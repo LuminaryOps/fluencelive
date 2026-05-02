@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Features — Fluence</title>
+  <meta name="description" content="A complete tour of Fluence: rendering, mixing, mapping, recording, and the parts that make live performance feel right." />
+  <link rel="icon" type="image/png" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="/" class="brand" aria-label="Fluence home">
+      <img src="assets/logo.png" alt="" />
+      <span>Fluence</span>
+    </a>
+    <ul class="nav__links">
+      <li><a class="nav__link" href="features.html" aria-current="page">Features</a></li>
+      <li><a class="nav__link" href="gallery.html">Gallery</a></li>
+      <li><a class="nav__link" href="docs.html">Docs</a></li>
+      <li><a class="nav__link" href="changelog.html">Changelog</a></li>
+    </ul>
+    <a class="btn btn--primary nav__cta" href="download.html">
+      Download
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-header">
+    <div class="container">
+      <span class="eyebrow">Features</span>
+      <h1>Everything you'd build a rig out of.</h1>
+      <p>Real-time rendering, layered composition, audio reactivity, hardware mapping, recording — engineered as one system, not glued together.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <!-- Rendering ---------------------------------------------- -->
+      <div class="showcase reveal">
+        <div class="showcase__copy">
+          <span class="eyebrow">Rendering</span>
+          <h3>OpenGL pipeline, frame-perfect timing.</h3>
+          <p>
+            Every layer composites on the GPU. Fluence isolates the audio thread, watches GPU
+            resource lifetimes, and keeps allocations out of the per-frame path — so 60fps stays
+            60fps when the room is full and you're sweating the build-up.
+          </p>
+        </div>
+        <div class="showcase__visual"></div>
+      </div>
+
+      <!-- Sources ----------------------------------------------- -->
+      <div class="showcase showcase--reverse reveal">
+        <div class="showcase__copy">
+          <span class="eyebrow">Sources</span>
+          <h3>Shaders, video, generators — one browser.</h3>
+          <p>
+            Built-in patterns, procedurals, raymarched 3D, fractals, particle systems, and the entire
+            ISF library are searchable from a single browser. Drop a GLSL or ISF file into the
+            shaders folder and it shows up there too.
+          </p>
+        </div>
+        <div class="showcase__visual"></div>
+      </div>
+
+      <!-- Composition ------------------------------------------- -->
+      <div class="showcase reveal">
+        <div class="showcase__copy">
+          <span class="eyebrow">Composition</span>
+          <h3>Layers, slots, columns, and an arrangement timeline.</h3>
+          <p>
+            Stack layers, fill slots with clips, group layers into routes. Switch between deck-style
+            triggering and an arrangement timeline you can scrub. Familiar VJ flow, modern internals
+            — copy/paste, undo/redo, save/load all work the way you'd expect.
+          </p>
+        </div>
+        <div class="showcase__visual"></div>
+      </div>
+
+      <!-- Effects ----------------------------------------------- -->
+      <div class="showcase showcase--reverse reveal">
+        <div class="showcase__copy">
+          <span class="eyebrow">Effects</span>
+          <h3>Per-clip, per-layer, or composition-wide.</h3>
+          <p>
+            Drop effects on a single clip, on a whole layer, or across the entire composition.
+            Every parameter is mappable, automatable, and persisted with your project.
+          </p>
+        </div>
+        <div class="showcase__visual"></div>
+      </div>
+
+      <!-- Audio reactive ---------------------------------------- -->
+      <div class="showcase reveal">
+        <div class="showcase__copy">
+          <span class="eyebrow">Audio reactivity</span>
+          <h3>Beat detection, FFT, and loopback.</h3>
+          <p>
+            Capture the system audio output or a dedicated input. Tap BPM, pull frequency bands,
+            and route them into uniforms or effect parameters with a Linear transform — visuals
+            that follow the room, not the click track.
+          </p>
+        </div>
+        <div class="showcase__visual"></div>
+      </div>
+
+      <!-- Mapping ----------------------------------------------- -->
+      <div class="showcase showcase--reverse reveal">
+        <div class="showcase__copy">
+          <span class="eyebrow">Hardware control</span>
+          <h3>Keyboard, MIDI, OSC — one mapping store.</h3>
+          <p>
+            Edit Keyboard / MIDI / OSC modes capture bindings in two clicks. Map clips, layers,
+            transport, BPM tap, effect knobs — anywhere a parameter exists. One source can fan
+            out to many targets, so a single key or note can launch a whole scene.
+          </p>
+        </div>
+        <div class="showcase__visual"></div>
+      </div>
+
+      <!-- Output ------------------------------------------------ -->
+      <div class="showcase reveal">
+        <div class="showcase__copy">
+          <span class="eyebrow">Output</span>
+          <h3>Multi-screen, screen capture, recording.</h3>
+          <p>
+            Send to one display, several, or a capture card. Capture another window or a region
+            of your desktop and use it as a live source. Record straight to disk in a single click.
+          </p>
+        </div>
+        <div class="showcase__visual"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="cta-band reveal">
+      <h2>That's the tour.</h2>
+      <p>Download Fluence and try it on your own rig — the full feature set is unlocked during beta.</p>
+      <div class="cta-band__actions">
+        <a class="btn btn--primary btn--lg" href="download.html">Get Fluence</a>
+        <a class="btn btn--secondary btn--lg" href="gallery.html">See it running</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer__brand">
+        <a href="/" class="brand" aria-label="Fluence home">
+          <img src="assets/logo.png" alt="" />
+          <span>Fluence</span>
+        </a>
+        <p>Real-time visuals built for stage.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="download.html">Download</a></li>
+          <li><a href="changelog.html">Changelog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="docs.html">Documentation</a></li>
+          <li><a href="docs.html#shortcuts">Shortcuts</a></li>
+          <li><a href="docs.html#system">System requirements</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@fluencelive.com">hello@fluencelive.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span id="year">2026</span> Fluence™. All rights reserved.</span>
+      <span>Built for live performance.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts.js" defer></script>
+</body>
+</html>

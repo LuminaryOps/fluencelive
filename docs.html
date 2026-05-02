@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Documentation — Fluence</title>
+  <meta name="description" content="Get started with Fluence — installation, your first scene, mapping controls, recording your set." />
+  <link rel="icon" type="image/png" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="/" class="brand" aria-label="Fluence home">
+      <img src="assets/logo.png" alt="" />
+      <span>Fluence</span>
+    </a>
+    <ul class="nav__links">
+      <li><a class="nav__link" href="features.html">Features</a></li>
+      <li><a class="nav__link" href="gallery.html">Gallery</a></li>
+      <li><a class="nav__link" href="docs.html" aria-current="page">Docs</a></li>
+      <li><a class="nav__link" href="changelog.html">Changelog</a></li>
+    </ul>
+    <a class="btn btn--primary nav__cta" href="download.html">
+      Download
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-header">
+    <div class="container">
+      <span class="eyebrow">Documentation</span>
+      <h1>Get up and running.</h1>
+      <p>Installation, your first scene, mapping a controller, and shipping a recording. More guides land as 1.0 ships.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose reveal">
+
+        <h2 id="install">Installing</h2>
+        <p>
+          Download the installer from the <a href="download.html" style="color: var(--accent)">Download</a> page,
+          run it, and follow the prompts. Fluence drops itself into <code>C:\Program Files\Fluence</code> by
+          default. Project files and recordings live alongside your user folder.
+        </p>
+
+        <h2 id="first-scene">Your first scene</h2>
+        <ol>
+          <li>Open Fluence. The composition starts empty with three layers.</li>
+          <li>Open <strong>Browser → Sources</strong> and double-click <em>Spiral</em> to drop it on Layer 3, slot 1.</li>
+          <li>Press <code>L</code> — the slot triggers and the spiral renders into the viewport.</li>
+          <li>Drag <em>Plasma</em> onto Layer 2, slot 1, and trigger it. Layers composite top-down.</li>
+          <li>Use the deck transport bar to set BPM and start the master clock.</li>
+        </ol>
+
+        <h2 id="mapping">Mapping a controller</h2>
+        <p>
+          Open <strong>Bindings → Edit MIDI</strong> (or Edit Keyboard / Edit OSC). Every bindable
+          control gets a coloured overlay. Click a slot, fader, or parameter, then move a knob or
+          press a key — Fluence captures the binding. Bindings show up in the Bindings panel where
+          you can adjust min/max ranges or unmap them. Save the project; the bindings travel with it.
+        </p>
+        <p class="text-muted">One source can fan out to several targets. To trigger a whole scene from one key, just bind that key to each clip you want firing.</p>
+
+        <h2 id="record">Recording your set</h2>
+        <p>
+          The transport bar has a record button. Hit it once to start, again to stop — files land in the
+          <code>Recordings/</code> folder next to the app. Codec, frame rate, and resolution are
+          configurable in <strong>Output → Recording</strong>.
+        </p>
+
+        <h2 id="shortcuts">Useful shortcuts</h2>
+        <ul>
+          <li><code>Space</code> — play/pause master clock</li>
+          <li><code>T</code> — tap BPM</li>
+          <li><code>Ctrl+S</code> — save project</li>
+          <li><code>Ctrl+Z</code> / <code>Ctrl+Y</code> — undo / redo</li>
+          <li><code>F11</code> — toggle full-screen output</li>
+        </ul>
+
+        <h2 id="system">System requirements</h2>
+        <p>See the <a href="download.html#system" style="color: var(--accent)">Download page</a> for hardware specs and recommended setup.</p>
+
+        <hr class="divider" style="margin-top: var(--space-7);" />
+
+        <p class="text-faint" style="margin-top: var(--space-6);">
+          More documentation lands as features stabilise — shader authoring, OSC schema reference, audio
+          routing, and a deep dive on the SDF modeler are all in the queue.
+        </p>
+
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer__brand">
+        <a href="/" class="brand" aria-label="Fluence home">
+          <img src="assets/logo.png" alt="" />
+          <span>Fluence</span>
+        </a>
+        <p>Real-time visuals built for stage.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="download.html">Download</a></li>
+          <li><a href="changelog.html">Changelog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="docs.html">Documentation</a></li>
+          <li><a href="docs.html#shortcuts">Shortcuts</a></li>
+          <li><a href="docs.html#system">System requirements</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@fluencelive.com">hello@fluencelive.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span id="year">2026</span> Fluence™. All rights reserved.</span>
+      <span>Built for live performance.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts.js" defer></script>
+</body>
+</html>

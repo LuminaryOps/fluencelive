@@ -1,0 +1,9 @@
+# Cloudflare Pages redirects
+# https://developers.cloudflare.com/pages/configuration/redirects/
+
+# Friendly short paths (without .html suffix)
+/features        /features.html        301
+/gallery         /gallery.html         301
+/download        /download.html        301
+/docs            /docs.html            301
+/changelog       /changelog.html       301
