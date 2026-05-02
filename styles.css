@@ -501,9 +501,25 @@ p + p { margin-top: var(--space-4); }
   border-color: var(--border-strong);
   transform: translateY(-2px);
 }
+
+.clip-card__icon {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: rgba(245, 166, 35, 0.1);
+  color: var(--accent);
+  margin-bottom: var(--space-3);
+}
+.clip-card__icon svg {
+  width: 18px;
+  height: 18px;
+}
+
 .clip-card h4 {
   font-size: var(--fs-base);
-  color: var(--accent);
+  color: var(--text);
   margin-bottom: var(--space-2);
   letter-spacing: -0.01em;
 }
@@ -513,35 +529,107 @@ p + p { margin-top: var(--space-4); }
   line-height: 1.6;
 }
 
-/* ── Blend-mode swatch grid ───────────────────────────────────── */
+/* ── Blend-mode demo (real CSS mix-blend-mode previews) ───────── */
 
-.blend-grid {
+.bm-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: var(--space-2);
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-3);
   margin-top: var(--space-5);
 }
 
-.blend-swatch {
-  position: relative;
-  aspect-ratio: 5 / 3;
-  border-radius: var(--radius-sm);
+.bm-demo {
+  border-radius: var(--radius);
   border: 1px solid var(--border);
-  background:
-    linear-gradient(135deg, rgba(245, 166, 35, 0.55), rgba(255, 122, 24, 0.15)),
-    repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0 6px, transparent 6px 12px),
-    var(--bg-elev);
-  display: grid;
-  place-items: end center;
-  padding: var(--space-2);
-  font-size: var(--fs-xs);
-  color: var(--text-muted);
-  letter-spacing: 0;
-  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+  overflow: hidden;
+  background: var(--bg-elev);
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
-.blend-swatch:hover {
+.bm-demo:hover {
   border-color: var(--border-strong);
-  color: var(--text);
+  transform: translateY(-2px);
+}
+
+.bm-demo__stage {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background:
+    radial-gradient(ellipse at 30% 50%, rgba(255, 122, 24, 0.95), rgba(245, 166, 35, 0.0) 60%),
+    radial-gradient(ellipse at 70% 50%, rgba(60, 130, 255, 0.9), rgba(60, 130, 255, 0.0) 60%),
+    #0a0a0c;
+  isolation: isolate;
+}
+
+.bm-demo__stage::before,
+.bm-demo__stage::after {
+  content: "";
+  position: absolute;
+  width: 60%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  top: 50%;
+  filter: blur(0.5px);
+}
+.bm-demo__stage::before {
+  left: 8%;
+  transform: translateY(-50%);
+  background: radial-gradient(circle, #ff7a18 0%, #c93f00 70%, transparent 100%);
+}
+.bm-demo__stage::after {
+  right: 8%;
+  transform: translateY(-50%);
+  background: radial-gradient(circle, #4d8eff 0%, #1f3aaa 70%, transparent 100%);
+  mix-blend-mode: var(--bm, normal);
+}
+
+.bm-demo__label {
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--border);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+.bm-demo__label .bm-demo__hint {
+  font-size: var(--fs-xs);
+  color: var(--text-faint);
+  font-weight: 400;
+}
+
+/* Compact list of remaining blend modes */
+.bm-list {
+  margin-top: var(--space-6);
+  padding: var(--space-5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-raised);
+}
+.bm-list__heading {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: var(--space-3);
+}
+.bm-list__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.bm-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--text-muted);
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
 }
 
 /* ── Stat strip (big numbers row) ─────────────────────────────── */
