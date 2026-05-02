@@ -116,6 +116,48 @@ body::before {
   z-index: -1;
 }
 
+/* ── Particle field ──────────────────────────────────────────── */
+/*  Tiled radial-gradient dots on a single fixed pseudo-element,  */
+/*  drifted with a GPU-composited transform animation. No JS,     */
+/*  one paint pass, transform-only frames after that. The tile is */
+/*  a 200x200 unit so a -200px translate loops seamlessly.        */
+
+body::after {
+  content: '';
+  position: fixed;
+  /* Oversize so the tiled pattern stays covering through the drift. */
+  inset: -100px 0 -300px 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    /* Warm orange embers (brand) */
+    radial-gradient(1.5px 1.5px at 30px 20px,   rgba(245, 166, 35, 0.70), transparent 65%),
+    radial-gradient(1px 1px     at 80px 50px,   rgba(255, 122, 24, 0.55), transparent 65%),
+    radial-gradient(2px 2px     at 130px 100px, rgba(255, 184, 79, 0.60), transparent 65%),
+    radial-gradient(1px 1px     at 50px 120px,  rgba(245, 166, 35, 0.50), transparent 65%),
+    radial-gradient(1.5px 1.5px at 170px 40px,  rgba(255, 122, 24, 0.55), transparent 65%),
+    radial-gradient(1px 1px     at 100px 170px, rgba(255, 184, 79, 0.50), transparent 65%),
+    radial-gradient(1px 1px     at 20px 80px,   rgba(245, 166, 35, 0.40), transparent 65%),
+    radial-gradient(1px 1px     at 150px 150px, rgba(255, 122, 24, 0.45), transparent 65%),
+    /* Cool micro-glints for depth */
+    radial-gradient(0.5px 0.5px at 60px 90px,   rgba(200, 215, 255, 0.55), transparent 70%),
+    radial-gradient(0.5px 0.5px at 110px 60px,  rgba(200, 215, 255, 0.45), transparent 70%),
+    radial-gradient(0.5px 0.5px at 180px 110px, rgba(200, 215, 255, 0.40), transparent 70%);
+  background-size: 200px 200px;
+  background-repeat: repeat;
+  will-change: transform;
+  animation: particle-drift 90s linear infinite;
+}
+
+@keyframes particle-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(0, -200px, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after { animation: none; }
+}
+
 /* ── Typography ───────────────────────────────────────────────── */
 
 h1, h2, h3, h4 {
