@@ -22,13 +22,17 @@
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-  // ── 2. Reveal-on-scroll ───────────────────────────────────────
+  // ── 2. Reveal-on-scroll (progressive enhancement) ────────────
+  // Default: content is visible. We only opt elements into the
+  // fade-in by adding .is-revealable, so if anything below fails,
+  // content is never trapped at opacity:0.
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const reveals = document.querySelectorAll('.reveal');
 
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    reveals.forEach((el) => el.classList.add('is-visible'));
-  } else {
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    // Hide-then-fade-in only when we can guarantee the IO fires.
+    reveals.forEach((el) => el.classList.add('is-revealable'));
+
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -38,7 +42,7 @@
           }
         }
       },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.05, rootMargin: '0px 0px -10% 0px' }
     );
     reveals.forEach((el) => io.observe(el));
   }

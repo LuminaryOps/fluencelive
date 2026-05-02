@@ -907,13 +907,17 @@ p + p { margin-top: var(--space-4); }
 }
 
 /* ── Reveal-on-scroll ─────────────────────────────────────────── */
+/*  Progressive enhancement: content is visible by default. JS     */
+/*  adds .is-revealable to opt elements into the hide-then-fade-in */
+/*  behaviour, then IntersectionObserver toggles .is-visible. If   */
+/*  JS or IO fails, nothing is ever hidden and the page is fine.   */
 
-.reveal {
+.reveal.is-revealable {
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 700ms var(--ease), transform 700ms var(--ease);
 }
-.reveal.is-visible {
+.reveal.is-revealable.is-visible {
   opacity: 1;
   transform: none;
 }
@@ -925,5 +929,5 @@ p + p { margin-top: var(--space-4); }
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .reveal { opacity: 1; transform: none; }
+  .reveal.is-revealable { opacity: 1; transform: none; }
 }
