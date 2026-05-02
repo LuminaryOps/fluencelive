@@ -4,14 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fluence — Real-time visuals for live performance</title>
-  <meta name="description" content="Fluence is a professional real-time visual performance tool. Live shaders, video, audio reactivity, MIDI/OSC mapping — built for stage." />
+  <meta name="description" content="Fluence is a real-time visual performance studio for VJing, projection mapping, and motion graphics. Composes shaders, video, audio, and live web — driven by keys, MIDI, OSC, and audio." />
   <link rel="icon" type="image/png" href="assets/icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <meta property="og:title" content="Fluence — Real-time visuals for live performance" />
-  <meta property="og:description" content="Live shaders, video, audio reactivity, MIDI/OSC mapping — built for stage." />
+  <meta property="og:description" content="A real-time visual performance studio. Layered composition, hardware mapping, audio reactivity, projection mapping — built for stage." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://fluencelive.com/" />
   <meta property="og:image" content="https://fluencelive.com/assets/og.png" />
@@ -26,12 +26,12 @@
       <span>Fluence</span>
     </a>
     <ul class="nav__links">
-      <li><a class="nav__link" href="features.html">Features</a></li>
-      <li><a class="nav__link" href="gallery.html">Gallery</a></li>
-      <li><a class="nav__link" href="docs.html">Docs</a></li>
-      <li><a class="nav__link" href="changelog.html">Changelog</a></li>
+      <li><a class="nav__link" href="/features">Features</a></li>
+      <li><a class="nav__link" href="/gallery">Gallery</a></li>
+      <li><a class="nav__link" href="/docs">Docs</a></li>
+      <li><a class="nav__link" href="/changelog">Changelog</a></li>
     </ul>
-    <a class="btn btn--primary nav__cta" href="download.html">
+    <a class="btn btn--primary nav__cta" href="/download">
       Download
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
     </a>
@@ -45,26 +45,35 @@
     <div class="container">
       <span class="hero__pill">
         <span class="dot"></span>
-        Now in beta — built for live performance
+        Now in beta
       </span>
       <h1>
         Real-time visuals,<br />
-        <span class="text-gradient">written for stage.</span>
+        <span class="text-gradient">made for stage.</span>
       </h1>
       <p class="hero__lede">
-        Fluence is a professional VJ and live-visuals studio. Compose shaders, video,
-        and generative scenes; drive them with audio, MIDI, OSC, and keys —
-        live, at 60 frames a second.
+        Fluence is a visual performance studio for live VJing, projection mapping, and motion graphics.
+        Compose shaders, video, audio, and live web — drive everything from your keyboard, a MIDI controller,
+        OSC, or the music itself.
       </p>
       <div class="hero__ctas">
-        <a class="btn btn--primary btn--lg" href="download.html">Get Fluence</a>
-        <a class="btn btn--secondary btn--lg" href="features.html">See features</a>
+        <a class="btn btn--primary btn--lg" href="/download">Get Fluence</a>
+        <a class="btn btn--secondary btn--lg" href="/features">See features</a>
       </div>
 
       <div class="hero__visual reveal">
-        <!-- Drop a real screenshot or short looping video at assets/hero.png -->
         <div class="hero__visual--placeholder">Hero screenshot · drop image at <code style="margin-left:.4em">assets/hero.png</code></div>
       </div>
+    </div>
+  </section>
+
+  <!-- Stat strip ------------------------------------------------ -->
+  <section class="container">
+    <div class="stat-strip reveal">
+      <div><span class="stat__num">15</span><span class="stat__label">clip types</span></div>
+      <div><span class="stat__num">27</span><span class="stat__label">blend modes</span></div>
+      <div><span class="stat__num">3</span><span class="stat__label">control protocols</span></div>
+      <div><span class="stat__num">12</span><span class="stat__label">export codecs</span></div>
     </div>
   </section>
 
@@ -73,41 +82,33 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="eyebrow">What's inside</span>
-        <h2>A complete real-time studio</h2>
-        <p class="section-header__lede">Every layer of a live visual rig — composition, mixing, mapping, recording — in one tool.</p>
+        <h2>One app, every layer of a live rig.</h2>
+        <p class="section-header__lede">Composition, mapping, mixing, projection, recording — all built as one system.</p>
       </div>
 
       <div class="feature-grid">
         <div class="feature reveal">
           <div class="feature__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
           </div>
-          <h3>Built for 60fps</h3>
-          <p>OpenGL render pipeline, audio-thread isolation, GPU resource discipline. Stays smooth when the room is full.</p>
-        </div>
-
-        <div class="feature reveal">
-          <div class="feature__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.01a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.01a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.01a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-          </div>
-          <h3>Shader-native</h3>
-          <p>GLSL and ISF sources load at runtime. Hot-edit a shader, see the result on stage in milliseconds.</p>
+          <h3>15 clip types</h3>
+          <p>Shaders, video, audio, images, live web pages, capture cards, screen and window grabs, generators. Anything that renders is fair game.</p>
         </div>
 
         <div class="feature reveal">
           <div class="feature__icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
           </div>
-          <h3>Mappable everything</h3>
-          <p>Bind any control to keyboard, MIDI, or OSC. Capture in two clicks; one input can fan out to many targets.</p>
+          <h3>Map anything</h3>
+          <p>Bind any control to a key, a MIDI knob, or an OSC address. One capture flow across all three. One source can fan out to many targets.</p>
         </div>
 
         <div class="feature reveal">
           <div class="feature__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h2l3-9 4 18 3-9h6"/></svg>
           </div>
           <h3>Audio-reactive</h3>
-          <p>Beat detection, FFT, and loopback capture flow into any uniform or parameter. Visuals follow the room.</p>
+          <p>Drive any parameter from any frequency band. Pick the range, set min and max, draw an envelope curve. From the room or an external input.</p>
         </div>
 
         <div class="feature reveal">
@@ -115,15 +116,23 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>
           </div>
           <h3>Layered composition</h3>
-          <p>Stack clips into layers, blend with familiar modes, group and route. Resolume-style flow, modern internals.</p>
+          <p>Stack layers, fill slots with clips, group, route. Switch between deck-style triggering and an arrangement timeline you can scrub.</p>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Output anywhere</h3>
+          <p>Multiple displays, projection mapping with slices and warping, edge blending across projectors, Spout in and out for cross-app rigs.</p>
         </div>
 
         <div class="feature reveal">
           <div class="feature__icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
           </div>
-          <h3>Record &amp; output</h3>
-          <p>Spyder-grade screen capture, multi-output routing, and built-in recording — straight to disk, ready to ship.</p>
+          <h3>Record &amp; export</h3>
+          <p>Live record your set with bar-aware start and stop triggers. Export to H.264, ProRes, HAP, DXV3, PNG, more — twelve codecs in total.</p>
         </div>
       </div>
     </div>
@@ -134,15 +143,16 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="eyebrow">In motion</span>
-        <h2>Made to perform</h2>
+        <h2>Made to perform.</h2>
       </div>
 
       <div class="showcase reveal">
         <div class="showcase__copy">
-          <h3>Compose like a DAW.<br />Perform like an instrument.</h3>
+          <span class="eyebrow">Composition</span>
+          <h3>Compose like a deck.<br />Perform like an arrangement.</h3>
           <p>
-            Layers, slots, columns, and an arrangement timeline you can scrub. Build a set in advance,
-            then trigger it the way you want it played — knobs, pads, keys, or all three at once.
+            A layered deck for live triggering, an arrangement timeline for prepared sets — both views, same composition.
+            Stack layers, group them, blend across 27 modes, transition with cuts, fades, wipes, or pushes.
           </p>
         </div>
         <div class="showcase__visual"></div>
@@ -150,10 +160,12 @@
 
       <div class="showcase showcase--reverse reveal">
         <div class="showcase__copy">
-          <h3>SDF modeling, fractals, and ISF — out of the box.</h3>
+          <span class="eyebrow">Sources</span>
+          <h3>A studio's worth of generators, built in.</h3>
           <p>
-            Built-in raymarched 3D, dynamic lighting, fractal zoom, particle systems, and the entire
-            ISF library. Drop a shader file in, it shows up in the browser. No plugin chain to manage.
+            ISF and GLSL shaders. Multi-pass Shadertoy import. A point-and-click 3D modeler that generates raymarched
+            GLSL on the fly. Deep-zoom Mandelbrot. Animated text with per-character stagger. Drop your own shader files
+            into a folder and they show up in the browser.
           </p>
         </div>
         <div class="showcase__visual"></div>
@@ -161,10 +173,12 @@
 
       <div class="showcase reveal">
         <div class="showcase__copy">
+          <span class="eyebrow">Hardware control</span>
           <h3>One mapping system. Three protocols.</h3>
           <p>
-            Keyboard, MIDI, OSC — captured the same way, stored the same way. Bind to clip triggers,
-            layer faders, BPM tap, effect parameters. Save it with the project; recall it on the next show.
+            Keyboard, MIDI, OSC — captured the same way, stored the same way. Click a control,
+            press a key or move a knob, done. One source can fire a whole scene. Bindings save with the project
+            so the next show starts where you left off.
           </p>
         </div>
         <div class="showcase__visual"></div>
@@ -176,10 +190,10 @@
   <section class="container">
     <div class="cta-band reveal">
       <h2>Ready to rig it up?</h2>
-      <p>Download Fluence and start composing. The full app, no feature gates during beta.</p>
+      <p>Download Fluence and start composing — the full feature set is unlocked during beta.</p>
       <div class="cta-band__actions">
-        <a class="btn btn--primary btn--lg" href="download.html">Get Fluence</a>
-        <a class="btn btn--secondary btn--lg" href="features.html">Read the features</a>
+        <a class="btn btn--primary btn--lg" href="/download">Get Fluence</a>
+        <a class="btn btn--secondary btn--lg" href="/features">Read the features</a>
       </div>
     </div>
   </section>
@@ -199,18 +213,16 @@
       <div>
         <h4>Product</h4>
         <ul>
-          <li><a href="features.html">Features</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="download.html">Download</a></li>
-          <li><a href="changelog.html">Changelog</a></li>
+          <li><a href="/features">Features</a></li>
+          <li><a href="/gallery">Gallery</a></li>
+          <li><a href="/download">Download</a></li>
+          <li><a href="/changelog">Changelog</a></li>
         </ul>
       </div>
       <div>
         <h4>Resources</h4>
         <ul>
-          <li><a href="docs.html">Documentation</a></li>
-          <li><a href="docs.html#shortcuts">Shortcuts</a></li>
-          <li><a href="docs.html#system">System requirements</a></li>
+          <li><a href="/docs">Documentation</a></li>
         </ul>
       </div>
       <div>

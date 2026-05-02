@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Download — Fluence</title>
-  <meta name="description" content="Download Fluence — the real-time visual performance studio. Windows installer, beta access." />
+  <meta name="description" content="Download Fluence — the real-time visual performance studio." />
   <link rel="icon" type="image/png" href="assets/icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,13 +20,13 @@
       <span>Fluence</span>
     </a>
     <ul class="nav__links">
-      <li><a class="nav__link" href="features.html">Features</a></li>
-      <li><a class="nav__link" href="gallery.html">Gallery</a></li>
-      <li><a class="nav__link" href="docs.html">Docs</a></li>
-      <li><a class="nav__link" href="changelog.html">Changelog</a></li>
+      <li><a class="nav__link" href="/features">Features</a></li>
+      <li><a class="nav__link" href="/gallery">Gallery</a></li>
+      <li><a class="nav__link" href="/docs">Docs</a></li>
+      <li><a class="nav__link" href="/changelog">Changelog</a></li>
     </ul>
-    <a class="btn btn--primary nav__cta" href="#buy">
-      Buy
+    <a class="btn btn--primary nav__cta" href="#download">
+      Download
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
     </a>
   </div>
@@ -38,54 +38,26 @@
     <div class="container">
       <span class="eyebrow">Download</span>
       <h1>Get Fluence.</h1>
-      <p>Windows 10/11. Beta — full feature set, no caps. The buy button below will go live the moment the storefront does.</p>
+      <p>Beta — full feature set unlocked. Pricing and storefront landing soon.</p>
     </div>
   </section>
 
   <section class="section">
-    <div class="container" id="buy">
+    <div class="container" id="download">
 
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-5); max-width: 880px; margin: 0 auto;">
-
-        <div class="price-card reveal">
-          <span class="eyebrow">Free trial</span>
-          <div class="price">
-            <span class="price__amount">$0</span>
-            <span class="price__period">/ no card</span>
-          </div>
-          <ul>
-            <li>Full feature set during beta</li>
-            <li>Watermarked output</li>
-            <li>Project save/load enabled</li>
-            <li>Community support</li>
-          </ul>
-          <a class="btn btn--secondary btn--lg" href="#" style="width:100%">Download trial</a>
-        </div>
-
-        <div class="price-card price-card--highlight reveal">
-          <span class="eyebrow text-accent">Fluence Pro</span>
-          <div class="price">
-            <span class="price__amount">$—</span>
-            <span class="price__period">/ one-time</span>
-          </div>
-          <ul>
-            <li>No watermark, all outputs</li>
-            <li>Lifetime updates during 1.x</li>
-            <li>Priority email support</li>
-            <li>Use on stage commercially</li>
-          </ul>
-          <a class="btn btn--primary btn--lg" href="#" style="width:100%">Buy Fluence</a>
-          <p class="text-faint" style="margin-top: var(--space-3); font-size: var(--fs-xs); text-align:center;">
-            Pricing finalised when storefront launches.
+      <div class="reveal" style="max-width: 520px; margin: 0 auto; text-align: center;">
+        <div class="price-card price-card--highlight">
+          <span class="eyebrow text-accent">Beta</span>
+          <h3 style="margin-top: var(--space-3);">Fluence is in beta</h3>
+          <p class="text-muted" style="margin-top: var(--space-3);">
+            We're putting the finishing touches on the storefront. Drop your email and we'll send you the
+            installer link the moment it's ready, plus pricing details when they're locked in.
           </p>
+          <a class="btn btn--primary btn--lg" href="mailto:hello@fluencelive.com?subject=Fluence%20beta%20signup" style="width:100%; margin-top: var(--space-5);">
+            Email us for early access
+          </a>
         </div>
-
       </div>
-
-      <p class="text-muted" style="text-align:center; margin-top: var(--space-7); font-size: var(--fs-sm);">
-        Looking for site licensing or studio packs? Email
-        <a href="mailto:hello@fluencelive.com" style="color: var(--accent)">hello@fluencelive.com</a>.
-      </p>
 
     </div>
   </section>
@@ -93,29 +65,15 @@
   <section class="section">
     <div class="container container--narrow">
       <div class="section-header reveal">
-        <span class="eyebrow" id="system">System requirements</span>
-        <h2>What you'll need</h2>
+        <span class="eyebrow">Platform</span>
+        <h2>Windows for now.</h2>
       </div>
-
-      <div class="prose reveal">
-        <h3>Minimum</h3>
-        <ul>
-          <li>Windows 10 64-bit (build 19041+) or Windows 11</li>
-          <li>OpenGL 4.3-capable GPU (anything from the last ~10 years)</li>
-          <li>8 GB RAM</li>
-          <li>2 GB free disk space</li>
-        </ul>
-
-        <h3>Recommended for live performance</h3>
-        <ul>
-          <li>Windows 11</li>
-          <li>NVIDIA RTX-class or AMD RX 6000-class GPU</li>
-          <li>16+ GB RAM</li>
-          <li>SSD with at least 10 GB free for cache and recordings</li>
-          <li>Dedicated GPU (no integrated graphics for stage use)</li>
-        </ul>
-
-        <p class="text-faint">macOS and Linux builds aren't on the roadmap yet — Windows-only for the 1.0 release.</p>
+      <div class="prose reveal" style="text-align: center;">
+        <p>
+          Fluence runs on Windows 10 and 11. Several core integrations — Spout, DeckLink capture, DirectShow
+          devices, screen capture — are Windows-specific, so the 1.0 release ships Windows-only.
+        </p>
+        <p class="text-faint">Detailed system requirements will be published with the storefront launch.</p>
       </div>
     </div>
   </section>
@@ -135,18 +93,16 @@
       <div>
         <h4>Product</h4>
         <ul>
-          <li><a href="features.html">Features</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="download.html">Download</a></li>
-          <li><a href="changelog.html">Changelog</a></li>
+          <li><a href="/features">Features</a></li>
+          <li><a href="/gallery">Gallery</a></li>
+          <li><a href="/download">Download</a></li>
+          <li><a href="/changelog">Changelog</a></li>
         </ul>
       </div>
       <div>
         <h4>Resources</h4>
         <ul>
-          <li><a href="docs.html">Documentation</a></li>
-          <li><a href="docs.html#shortcuts">Shortcuts</a></li>
-          <li><a href="docs.html#system">System requirements</a></li>
+          <li><a href="/docs">Documentation</a></li>
         </ul>
       </div>
       <div>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Features — Fluence</title>
-  <meta name="description" content="A complete tour of Fluence: rendering, mixing, mapping, recording, and the parts that make live performance feel right." />
+  <meta name="description" content="The full Fluence feature tour: clip library, mapping, automation, projection mapping, output, recording, export, and workflow." />
   <link rel="icon" type="image/png" href="assets/icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,12 +20,12 @@
       <span>Fluence</span>
     </a>
     <ul class="nav__links">
-      <li><a class="nav__link" href="features.html" aria-current="page">Features</a></li>
-      <li><a class="nav__link" href="gallery.html">Gallery</a></li>
-      <li><a class="nav__link" href="docs.html">Docs</a></li>
-      <li><a class="nav__link" href="changelog.html">Changelog</a></li>
+      <li><a class="nav__link" href="/features" aria-current="page">Features</a></li>
+      <li><a class="nav__link" href="/gallery">Gallery</a></li>
+      <li><a class="nav__link" href="/docs">Docs</a></li>
+      <li><a class="nav__link" href="/changelog">Changelog</a></li>
     </ul>
-    <a class="btn btn--primary nav__cta" href="download.html">
+    <a class="btn btn--primary nav__cta" href="/download">
       Download
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
     </a>
@@ -38,109 +38,385 @@
     <div class="container">
       <span class="eyebrow">Features</span>
       <h1>Everything you'd build a rig out of.</h1>
-      <p>Real-time rendering, layered composition, audio reactivity, hardware mapping, recording — engineered as one system, not glued together.</p>
+      <p>A complete tour of the Fluence feature set — composition, clip library, hardware control, animation, output, recording, and the workflow pieces that hold it all together.</p>
     </div>
   </section>
 
+  <!-- Clip library (TABBED) ------------------------------------- -->
   <section class="section">
     <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Clip library</span>
+        <h2>Fifteen clip types.</h2>
+        <p class="section-header__lede">From shaders and video to live capture and built-in generators. Mix any of them on any layer.</p>
+      </div>
 
-      <!-- Rendering ---------------------------------------------- -->
+      <div data-tabs class="reveal" style="text-align:center;">
+        <div class="tabs" role="tablist" aria-label="Clip type categories">
+          <button class="tab" role="tab" data-tab="visuals" aria-selected="true">Visuals</button>
+          <button class="tab" role="tab" data-tab="media" aria-selected="false">Media</button>
+          <button class="tab" role="tab" data-tab="capture" aria-selected="false">Live inputs</button>
+          <button class="tab" role="tab" data-tab="utility" aria-selected="false">Utility</button>
+        </div>
+
+        <div class="tab-panel" data-tab-panel="visuals" data-active="true">
+          <div class="clip-grid" style="text-align:left;">
+            <div class="clip-card">
+              <h4>Shader</h4>
+              <p>ISF, GLSL <code>.fs</code>, and Shadertoy <code>.json</code> with multi-pass support. Mesh shaders add vertex and geometry stages with full PBR. Drop a shader file in your folder; it shows up next launch.</p>
+            </div>
+            <div class="clip-card">
+              <h4>Text</h4>
+              <p>Animated text rendered with signed distance fields — crisp at any resolution. Per-character animation of position, scale, rotation, color, opacity, glow, with stagger by characters, words, or lines.</p>
+            </div>
+            <div class="clip-card">
+              <h4>Fractal</h4>
+              <p>Deep-zoom Mandelbrot using arbitrary-precision math, far past standard floating-point limits. Ten formulas, six palettes, click-to-recenter, auto-zoom, auto-rotate.</p>
+            </div>
+            <div class="clip-card">
+              <h4>Shape Shifter 3D</h4>
+              <p>Real-time SDF modeling. Build scenes from primitives, boolean ops, modifiers, and deformations. The engine generates only the GLSL your scene actually uses, on the fly.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-tab-panel="media">
+          <div class="clip-grid" style="text-align:left;">
+            <div class="clip-card">
+              <h4>Video</h4>
+              <p>mp4, mov, mkv, webm, avi, wmv, flv, m4v. Speed control, reverse, in/out trim. Loop, ping-pong, once-hold, or once-eject playback.</p>
+            </div>
+            <div class="clip-card">
+              <h4>Audio</h4>
+              <p>mp3, wav, flac, ogg, m4a, aac. Trigger from the deck or place on the arrangement timeline as a waveform. Routes to the master output.</p>
+            </div>
+            <div class="clip-card">
+              <h4>Image</h4>
+              <p>png, jpg, jpeg, gif, bmp. Treat stills like any other clip — transform them, blend them, drive their parameters with audio or hardware.</p>
+            </div>
+            <div class="clip-card">
+              <h4>Web</h4>
+              <p>Live HTML rendered via an embedded browser. Any URL or local <code>file://</code> path. Use it for web visualizations, live data, or anything HTML can do.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-tab-panel="capture">
+          <div class="clip-grid" style="text-align:left;">
+            <div class="clip-card">
+              <h4>Spout</h4>
+              <p>Receive video from any other Spout-enabled Windows app — game engines, VJ tools, generative software. Live texture sharing, no encoding overhead.</p>
+            </div>
+            <div class="clip-card">
+              <h4>DeckLink</h4>
+              <p>Pro video input via Blackmagic DeckLink capture cards. Detected devices show up in the Sources browser automatically.</p>
+            </div>
+            <div class="clip-card">
+              <h4>Capture (DirectShow)</h4>
+              <p>Webcams, USB capture cards, virtual cameras. Anything Windows sees as a DirectShow device works as a live source.</p>
+            </div>
+            <div class="clip-card">
+              <h4>Screen</h4>
+              <p>Capture a desktop, monitor, or single window via Windows.Graphics.Capture. Use any application's output as a clip.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-tab-panel="utility">
+          <div class="clip-grid" style="text-align:left;">
+            <div class="clip-card">
+              <h4>Test Card</h4>
+              <p>Built-in calibration patterns — SMPTE bars, gradients, geometry overlays, frequency tests, FPS counter, frame index. For dialing in displays and projector setups.</p>
+            </div>
+            <div class="clip-card">
+              <h4>Router</h4>
+              <p>Routes another layer's composited output back as input. Feedback effects, layer mixing, recursive composition.</p>
+            </div>
+            <div class="clip-card">
+              <h4>Plugin</h4>
+              <p>Third-party clips written in Python, Node, or any executable. Communicates with Fluence over a shared-memory protocol.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Mapping & animation --------------------------------------- -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Mapping &amp; animation</span>
+        <h2>Drive every parameter, three ways.</h2>
+        <p class="section-header__lede">Bindings for performance, timeline automation for shape, FFT for response.</p>
+      </div>
+
       <div class="showcase reveal">
         <div class="showcase__copy">
-          <span class="eyebrow">Rendering</span>
-          <h3>OpenGL pipeline, frame-perfect timing.</h3>
+          <span class="eyebrow">Bindings</span>
+          <h3>Keyboard, MIDI, OSC — one mapping system.</h3>
           <p>
-            Every layer composites on the GPU. Fluence isolates the audio thread, watches GPU
-            resource lifetimes, and keeps allocations out of the per-frame path — so 60fps stays
-            60fps when the room is full and you're sweating the build-up.
+            Click <em>Edit Keyboard</em>, <em>Edit MIDI</em>, or <em>Edit OSC</em>. Every mappable widget paints an
+            overlay. Click the control, press a key or move a knob, done. OSC works the other direction —
+            addresses derive from the control hierarchy, ready for TouchOSC.
+          </p>
+          <p>
+            Each binding has min and max — scale 0–1 input into any range. One source can fan out to
+            many targets, so a single key can fire a whole scene. Bindings save with the project.
           </p>
         </div>
         <div class="showcase__visual"></div>
       </div>
 
-      <!-- Sources ----------------------------------------------- -->
       <div class="showcase showcase--reverse reveal">
         <div class="showcase__copy">
-          <span class="eyebrow">Sources</span>
-          <h3>Shaders, video, generators — one browser.</h3>
+          <span class="eyebrow">Timeline automation</span>
+          <h3>Animate any value over time.</h3>
           <p>
-            Built-in patterns, procedurals, raymarched 3D, fractals, particle systems, and the entire
-            ISF library are searchable from a single browser. Drop a GLSL or ISF file into the
-            shaders folder and it shows up there too.
+            Loop, bounce, random, or play-once-and-hold. Sync to seconds or to your composition's BPM.
+            Phase-offset multiple parameters to stagger them. Draw custom envelope curves with per-point easing —
+            linear, quad, sine, circular, or noise for organic randomness.
           </p>
         </div>
         <div class="showcase__visual"></div>
       </div>
 
-      <!-- Composition ------------------------------------------- -->
-      <div class="showcase reveal">
-        <div class="showcase__copy">
-          <span class="eyebrow">Composition</span>
-          <h3>Layers, slots, columns, and an arrangement timeline.</h3>
-          <p>
-            Stack layers, fill slots with clips, group layers into routes. Switch between deck-style
-            triggering and an arrangement timeline you can scrub. Familiar VJ flow, modern internals
-            — copy/paste, undo/redo, save/load all work the way you'd expect.
-          </p>
-        </div>
-        <div class="showcase__visual"></div>
-      </div>
-
-      <!-- Effects ----------------------------------------------- -->
-      <div class="showcase showcase--reverse reveal">
-        <div class="showcase__copy">
-          <span class="eyebrow">Effects</span>
-          <h3>Per-clip, per-layer, or composition-wide.</h3>
-          <p>
-            Drop effects on a single clip, on a whole layer, or across the entire composition.
-            Every parameter is mappable, automatable, and persisted with your project.
-          </p>
-        </div>
-        <div class="showcase__visual"></div>
-      </div>
-
-      <!-- Audio reactive ---------------------------------------- -->
       <div class="showcase reveal">
         <div class="showcase__copy">
           <span class="eyebrow">Audio reactivity</span>
-          <h3>Beat detection, FFT, and loopback.</h3>
+          <h3>Drive parameters from any frequency band.</h3>
           <p>
-            Capture the system audio output or a dedicated input. Tap BPM, pull frequency bands,
-            and route them into uniforms or effect parameters with a Linear transform — visuals
-            that follow the room, not the click track.
+            Pick a source — the room (composition output) or an external input. Set a frequency range. Tune gain,
+            smoothing, multiplier, and output range. Reshape the response with an envelope curve. Every parameter
+            that supports timeline automation also supports FFT.
           </p>
         </div>
         <div class="showcase__visual"></div>
       </div>
+    </div>
+  </section>
 
-      <!-- Mapping ----------------------------------------------- -->
-      <div class="showcase showcase--reverse reveal">
-        <div class="showcase__copy">
-          <span class="eyebrow">Hardware control</span>
-          <h3>Keyboard, MIDI, OSC — one mapping store.</h3>
-          <p>
-            Edit Keyboard / MIDI / OSC modes capture bindings in two clicks. Map clips, layers,
-            transport, BPM tap, effect knobs — anywhere a parameter exists. One source can fan
-            out to many targets, so a single key or note can launch a whole scene.
-          </p>
-        </div>
-        <div class="showcase__visual"></div>
+  <!-- Effects & composition ------------------------------------ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Effects &amp; composition</span>
+        <h2>Stack, group, blend, transition.</h2>
+        <p class="section-header__lede">Build the look at four scopes — clip, layer, group, composition.</p>
       </div>
 
-      <!-- Output ------------------------------------------------ -->
       <div class="showcase reveal">
         <div class="showcase__copy">
-          <span class="eyebrow">Output</span>
-          <h3>Multi-screen, screen capture, recording.</h3>
+          <h3>Effect chains, anywhere.</h3>
           <p>
-            Send to one display, several, or a capture card. Capture another window or a region
-            of your desktop and use it as a live source. Record straight to disk in a single click.
+            Drop effects on a single clip, on a whole layer, on a group, or across the entire composition.
+            They run in order — clip → layer → group → comp. Reorder with a drag, opacity-blend, enable/disable
+            without removing, save preset chains.
+          </p>
+          <p>
+            Some effects are filters (input image required). Others are generators — drop one on an empty slot
+            and it becomes a clip that consumes the layers below as input.
           </p>
         </div>
         <div class="showcase__visual"></div>
       </div>
 
+      <!-- Blend modes visual grid -->
+      <div class="reveal" style="margin-top: var(--space-7);">
+        <h3 style="text-align:center;">27 blend modes.</h3>
+        <p class="text-muted" style="text-align:center; max-width: 600px; margin: var(--space-3) auto 0;">
+          From standard composite to creative keying — full control over how layers stack.
+        </p>
+        <div class="blend-grid">
+          <div class="blend-swatch">Normal</div>
+          <div class="blend-swatch">Add</div>
+          <div class="blend-swatch">50% Add</div>
+          <div class="blend-swatch">50% Lighten</div>
+          <div class="blend-swatch">Multiply</div>
+          <div class="blend-swatch">Screen</div>
+          <div class="blend-swatch">Overlay</div>
+          <div class="blend-swatch">Hard Light</div>
+          <div class="blend-swatch">Soft Light</div>
+          <div class="blend-swatch">Vivid Light</div>
+          <div class="blend-swatch">Linear Light</div>
+          <div class="blend-swatch">Pin Light</div>
+          <div class="blend-swatch">Hard Mix</div>
+          <div class="blend-swatch">Darken</div>
+          <div class="blend-swatch">Lighten</div>
+          <div class="blend-swatch">Color Burn</div>
+          <div class="blend-swatch">Color Dodge</div>
+          <div class="blend-swatch">Linear Burn</div>
+          <div class="blend-swatch">Linear Dodge</div>
+          <div class="blend-swatch">Difference</div>
+          <div class="blend-swatch">Diff Inv</div>
+          <div class="blend-swatch">Subtract</div>
+          <div class="blend-swatch">Exclusion</div>
+          <div class="blend-swatch">Divide</div>
+          <div class="blend-swatch">Luma is Alpha</div>
+          <div class="blend-swatch">Luma Key</div>
+          <div class="blend-swatch">Luma Key Inv</div>
+        </div>
+      </div>
+
+      <div class="showcase showcase--reverse reveal" style="margin-top: var(--space-7);">
+        <div class="showcase__copy">
+          <span class="eyebrow">Transitions</span>
+          <h3>Cut, fade, wipe, push.</h3>
+          <p>
+            Set per-layer transitions for clip switching: instant cuts, crossfades, four directions of wipe, four
+            directions of push. Adjustable duration. On the arrangement timeline, overlapping two clips on a track
+            creates a transition with the overlap duration.
+          </p>
+        </div>
+        <div class="showcase__visual"></div>
+      </div>
+
+      <div class="showcase reveal">
+        <div class="showcase__copy">
+          <span class="eyebrow">Layer groups</span>
+          <h3>Composite together, blend as one.</h3>
+          <p>
+            Group multiple layers and they composite together before blending with the rest. Groups have their own
+            opacity, blend mode, and effect chain — useful for treating a sub-mix as a unit.
+          </p>
+        </div>
+        <div class="showcase__visual"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Output & projection mapping ------------------------------ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Output &amp; projection mapping</span>
+        <h2>From one screen to a whole rig.</h2>
+        <p class="section-header__lede">Multi-display, projection mapping, edge blending, warping, Spout — all in one output engine.</p>
+      </div>
+
+      <div class="showcase reveal">
+        <div class="showcase__copy">
+          <h3>Multi-display, with projection mapping.</h3>
+          <p>
+            Quick output: borderless fullscreen on any monitor, or a windowed output at composition resolution.
+            Advanced output: multiple <em>screens</em> (each a monitor, Spout sender, or virtual destination) with
+            <em>slices</em> mapping regions of the composition to regions of the screen.
+          </p>
+          <p>
+            Per-slice opacity, brightness, contrast, RGB, rotation, flip. Edge blending for overlapping
+            projectors. Warping grids for non-flat surfaces.
+          </p>
+        </div>
+        <div class="showcase__visual"></div>
+      </div>
+
+      <div class="showcase showcase--reverse reveal">
+        <div class="showcase__copy">
+          <h3>Spout in. Spout out.</h3>
+          <p>
+            Send Fluence's output to any Spout-compatible Windows app, and pull other Spout sources back in
+            as clips. Build cross-app rigs without ever encoding video.
+          </p>
+        </div>
+        <div class="showcase__visual"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recording & export --------------------------------------- -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Recording &amp; export</span>
+        <h2>Capture the live show. Render the prepared one.</h2>
+      </div>
+
+      <div class="showcase reveal">
+        <div class="showcase__copy">
+          <span class="eyebrow">Live recording</span>
+          <h3>Bar-aware start and stop triggers.</h3>
+          <p>
+            Record the composition output, or any specific layer. Start immediately, on the next clip trigger,
+            on the next bar (BPM-synced), or after a delay. Stop manually, when all clips finish, after a number of
+            seconds, or after a number of beats. Set it once before the show; let it run itself.
+          </p>
+        </div>
+        <div class="showcase__visual"></div>
+      </div>
+
+      <div class="showcase showcase--reverse reveal">
+        <div class="showcase__copy">
+          <span class="eyebrow">Export</span>
+          <h3>Twelve codecs, including HAP and DXV3.</h3>
+          <p>
+            FFmpeg-based: H.264, ProRes 422 / 422 HQ / 4444, PNG sequence. GPU-direct (no FFmpeg overhead):
+            HAP, HAP Alpha, HAP Q, DXV3 in four flavors. Export single clips or full arrangements. Queue multiple
+            jobs. FPS presets from 24 to 60.
+          </p>
+        </div>
+        <div class="showcase__visual"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Workflow ------------------------------------------------- -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Workflow</span>
+        <h2>The pieces that hold it together.</h2>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature reveal">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="3" y1="12" x2="9" y2="12"/></svg>
+          </div>
+          <h3>Modular dock</h3>
+          <p>Drag any panel to reposition, split, or tab. Open multiple Viewports and Parameters panels. Layout saves with the project.</p>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.5-.7 1.5-1.5 0-.4-.16-.77-.42-1.05-.26-.28-.42-.65-.42-1.05 0-.83.67-1.5 1.5-1.5H16c3.31 0 6-2.69 6-6 0-4.97-4.5-9-10-9z"/></svg>
+          </div>
+          <h3>Theme system</h3>
+          <p>Four presets: Midnight, Cobalt, Emerald, Rose. Or pick any accent color. Adjustable UI scale. Dark / light mode.</p>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>Arrangement timeline</h3>
+          <p>Switch from deck-style triggering to a track-based arrangement. Drag clips to tracks, scrub, set loop regions, razor-split, range-select.</p>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+          </div>
+          <h3>Undo / redo</h3>
+          <p>Structural and parameter changes are both undoable. Save and load compositions as JSON; the format is versioned.</p>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h3>Snapshots</h3>
+          <p>Press a key, capture a single frame as PNG. Composition snapshot or per-clip snapshot. Auto-inserts as an Image clip in the next empty slot.</p>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <h3>Plugin architecture</h3>
+          <p>Extend Fluence with third-party clips and effects. Python, Node, or any executable runtime. Shared-memory frame protocol with per-plugin permissions.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -149,8 +425,8 @@
       <h2>That's the tour.</h2>
       <p>Download Fluence and try it on your own rig — the full feature set is unlocked during beta.</p>
       <div class="cta-band__actions">
-        <a class="btn btn--primary btn--lg" href="download.html">Get Fluence</a>
-        <a class="btn btn--secondary btn--lg" href="gallery.html">See it running</a>
+        <a class="btn btn--primary btn--lg" href="/download">Get Fluence</a>
+        <a class="btn btn--secondary btn--lg" href="/gallery">See it running</a>
       </div>
     </div>
   </section>
@@ -170,18 +446,16 @@
       <div>
         <h4>Product</h4>
         <ul>
-          <li><a href="features.html">Features</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="download.html">Download</a></li>
-          <li><a href="changelog.html">Changelog</a></li>
+          <li><a href="/features">Features</a></li>
+          <li><a href="/gallery">Gallery</a></li>
+          <li><a href="/download">Download</a></li>
+          <li><a href="/changelog">Changelog</a></li>
         </ul>
       </div>
       <div>
         <h4>Resources</h4>
         <ul>
-          <li><a href="docs.html">Documentation</a></li>
-          <li><a href="docs.html#shortcuts">Shortcuts</a></li>
-          <li><a href="docs.html#system">System requirements</a></li>
+          <li><a href="/docs">Documentation</a></li>
         </ul>
       </div>
       <div>

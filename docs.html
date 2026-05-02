@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Documentation — Fluence</title>
-  <meta name="description" content="Get started with Fluence — installation, your first scene, mapping controls, recording your set." />
+  <meta name="description" content="Getting started with Fluence — the high-level concepts, where files live, and where to find the full in-app user guide." />
   <link rel="icon" type="image/png" href="assets/icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,12 +20,12 @@
       <span>Fluence</span>
     </a>
     <ul class="nav__links">
-      <li><a class="nav__link" href="features.html">Features</a></li>
-      <li><a class="nav__link" href="gallery.html">Gallery</a></li>
-      <li><a class="nav__link" href="docs.html" aria-current="page">Docs</a></li>
-      <li><a class="nav__link" href="changelog.html">Changelog</a></li>
+      <li><a class="nav__link" href="/features">Features</a></li>
+      <li><a class="nav__link" href="/gallery">Gallery</a></li>
+      <li><a class="nav__link" href="/docs" aria-current="page">Docs</a></li>
+      <li><a class="nav__link" href="/changelog">Changelog</a></li>
     </ul>
-    <a class="btn btn--primary nav__cta" href="download.html">
+    <a class="btn btn--primary nav__cta" href="/download">
       Download
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
     </a>
@@ -37,8 +37,8 @@
   <section class="page-header">
     <div class="container">
       <span class="eyebrow">Documentation</span>
-      <h1>Get up and running.</h1>
-      <p>Installation, your first scene, mapping a controller, and shipping a recording. More guides land as 1.0 ships.</p>
+      <h1>Get oriented.</h1>
+      <p>The fastest way to get up and running, plus where the full reference lives.</p>
     </div>
   </section>
 
@@ -46,55 +46,82 @@
     <div class="container">
       <article class="prose reveal">
 
-        <h2 id="install">Installing</h2>
+        <h2>The full user guide is inside the app.</h2>
         <p>
-          Download the installer from the <a href="download.html" style="color: var(--accent)">Download</a> page,
-          run it, and follow the prompts. Fluence drops itself into <code>C:\Program Files\Fluence</code> by
-          default. Project files and recordings live alongside your user folder.
+          Open Fluence and pick <strong>Help → User Guide</strong> from the menu — that's the canonical reference,
+          updated alongside the app itself. It covers every panel, every clip type, every mapping mode, plus
+          the full keyboard shortcut list.
+        </p>
+        <p>
+          This page is the high-level orientation: the few concepts and conventions that make the
+          rest of the guide click into place.
         </p>
 
-        <h2 id="first-scene">Your first scene</h2>
-        <ol>
-          <li>Open Fluence. The composition starts empty with three layers.</li>
-          <li>Open <strong>Browser → Sources</strong> and double-click <em>Spiral</em> to drop it on Layer 3, slot 1.</li>
-          <li>Press <code>L</code> — the slot triggers and the spiral renders into the viewport.</li>
-          <li>Drag <em>Plasma</em> onto Layer 2, slot 1, and trigger it. Layers composite top-down.</li>
-          <li>Use the deck transport bar to set BPM and start the master clock.</li>
-        </ol>
-
-        <h2 id="mapping">Mapping a controller</h2>
+        <h2 id="key-concepts">Key concepts</h2>
+        <h3>Composition</h3>
         <p>
-          Open <strong>Bindings → Edit MIDI</strong> (or Edit Keyboard / Edit OSC). Every bindable
-          control gets a coloured overlay. Click a slot, fader, or parameter, then move a knob or
-          press a key — Fluence captures the binding. Bindings show up in the Bindings panel where
-          you can adjust min/max ranges or unmap them. Save the project; the bindings travel with it.
-        </p>
-        <p class="text-muted">One source can fan out to several targets. To trigger a whole scene from one key, just bind that key to each clip you want firing.</p>
-
-        <h2 id="record">Recording your set</h2>
-        <p>
-          The transport bar has a record button. Hit it once to start, again to stop — files land in the
-          <code>Recordings/</code> folder next to the app. Codec, frame rate, and resolution are
-          configurable in <strong>Output → Recording</strong>.
+          A Fluence project is a <em>composition</em>. It contains layers, layer groups, an arrangement timeline,
+          a global effect chain, transforms, and output settings. Compositions save as JSON and travel with
+          their bindings, automation, and presets.
         </p>
 
-        <h2 id="shortcuts">Useful shortcuts</h2>
+        <h3>Layers and slots</h3>
+        <p>
+          Each layer holds a row of <em>clip slots</em>. One slot per layer can be active at a time. Layers composite
+          top to bottom — the top layer draws over the layers below it. Layers can be grouped, and groups have
+          their own opacity, blend mode, and effect chain.
+        </p>
+
+        <h3>Clips</h3>
+        <p>
+          A <em>clip</em> is what fills a slot — a shader, a video, a generator, a live capture, an image, anything
+          from the <a href="/features#clip-library" style="color: var(--accent)">clip library</a>. Each clip
+          has its own parameters, transform, opacity, and effect chain.
+        </p>
+
+        <h3>Two views, one composition</h3>
+        <p>
+          The same composition has two views. The <em>Layer Deck</em> is the live grid for triggering clips during a
+          performance. The <em>Arrangement</em> is a timeline-based view of the same layers as tracks, where you
+          drag clips, scrub a playhead, and prepare a set in advance. Switch with the tab at the top of the
+          deck panel.
+        </p>
+
+        <h3>Bindings</h3>
+        <p>
+          A <em>binding</em> connects an input source (a key, a MIDI Note / CC / Pitch Bend, or an OSC address) to a
+          target inside the composition. Targets cover transport, layer controls, clip triggers, and any
+          effect or parameter. One source can fan out to many targets.
+        </p>
+
+        <h2 id="files">Where Fluence keeps things</h2>
+        <p>By default, your project files and assets live under your Documents folder:</p>
         <ul>
-          <li><code>Space</code> — play/pause master clock</li>
-          <li><code>T</code> — tap BPM</li>
-          <li><code>Ctrl+S</code> — save project</li>
-          <li><code>Ctrl+Z</code> / <code>Ctrl+Y</code> — undo / redo</li>
-          <li><code>F11</code> — toggle full-screen output</li>
+          <li><code>Documents/Fluence/Shaders/</code> — drop <code>.isf</code>, <code>.fs</code>, or Shadertoy <code>.json</code> files here. They show up in the browser on next launch.</li>
+          <li><code>Documents/Fluence/Snapshots/</code> — PNGs from the snapshot tool land here.</li>
+          <li><code>Documents/Fluence/Presets/</code> — saved parameter / effect / clip presets.</li>
         </ul>
+        <p class="text-muted">Bindings are stored in your OS user config directory and persist across sessions.</p>
 
-        <h2 id="system">System requirements</h2>
-        <p>See the <a href="download.html#system" style="color: var(--accent)">Download page</a> for hardware specs and recommended setup.</p>
+        <h2 id="quick-start">Quick start</h2>
+        <ol>
+          <li>Install Fluence. Launch it.</li>
+          <li>Open the Browser panel and switch to the <em>Sources</em> tab.</li>
+          <li>Drag any source onto a clip slot in the Layer Deck.</li>
+          <li>Click the slot to activate it — the clip starts rendering in the Viewport.</li>
+          <li>Adjust parameters in the right-hand panel.</li>
+          <li>Drag more sources onto other slots and click between them to switch.</li>
+        </ol>
+        <p>
+          From there, the in-app User Guide will walk you through layers, mappings, automation, output, and
+          everything else. No tutorial videos required to get started.
+        </p>
 
         <hr class="divider" style="margin-top: var(--space-7);" />
 
         <p class="text-faint" style="margin-top: var(--space-6);">
-          More documentation lands as features stabilise — shader authoring, OSC schema reference, audio
-          routing, and a deep dive on the SDF modeler are all in the queue.
+          Have a question that isn't covered in the in-app guide?
+          Email <a href="mailto:hello@fluencelive.com" style="color: var(--accent)">hello@fluencelive.com</a>.
         </p>
 
       </article>
@@ -116,18 +143,16 @@
       <div>
         <h4>Product</h4>
         <ul>
-          <li><a href="features.html">Features</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="download.html">Download</a></li>
-          <li><a href="changelog.html">Changelog</a></li>
+          <li><a href="/features">Features</a></li>
+          <li><a href="/gallery">Gallery</a></li>
+          <li><a href="/download">Download</a></li>
+          <li><a href="/changelog">Changelog</a></li>
         </ul>
       </div>
       <div>
         <h4>Resources</h4>
         <ul>
-          <li><a href="docs.html">Documentation</a></li>
-          <li><a href="docs.html#shortcuts">Shortcuts</a></li>
-          <li><a href="docs.html#system">System requirements</a></li>
+          <li><a href="/docs">Documentation</a></li>
         </ul>
       </div>
       <div>
