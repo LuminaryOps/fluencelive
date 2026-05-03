@@ -797,34 +797,74 @@ p + p { margin-top: var(--space-4); }
 
 .showcase__stack .showcase__pic {
   position: absolute;
-  width: 78%;
+  width: 76%;
+  animation: stack-cycle 14s cubic-bezier(0.65, 0, 0.35, 1) infinite;
 }
 .showcase__stack .showcase__pic--back {
   top: 0;
   right: 0;
-  z-index: 1;
-  opacity: 0.9;
 }
 .showcase__stack .showcase__pic--front {
   bottom: 0;
   left: 0;
-  z-index: 2;
-  box-shadow:
-    0 30px 60px -20px rgba(0, 0, 0, 0.55),
-    0 12px 24px -10px rgba(245, 166, 35, 0.18);
-}
-.showcase__stack:hover .showcase__pic--front {
-  transform: translate(-6px, -6px);
-}
-.showcase__stack:hover .showcase__pic--back {
-  transform: translate(6px, 6px);
-  opacity: 1;
+  /* Offset by half a cycle so the two alternate */
+  animation-delay: -7s;
 }
 
-/* Mobile: offset still works but tighten the geometry */
+/* The cycle: 0-43% in back (recessed), 50-93% in front, brief
+   transitions in between. Each image runs the same animation —
+   the front pic just starts at -7s so the two are always opposite. */
+@keyframes stack-cycle {
+  0%, 43% {
+    z-index: 1;
+    opacity: 0.55;
+    transform: scale(0.95);
+    filter: brightness(0.65) saturate(0.85);
+    box-shadow: none;
+  }
+  50%, 93% {
+    z-index: 2;
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1) saturate(1);
+    box-shadow:
+      0 30px 60px -20px rgba(0, 0, 0, 0.55),
+      0 12px 24px -10px rgba(245, 166, 35, 0.18);
+  }
+  100% {
+    z-index: 1;
+    opacity: 0.55;
+    transform: scale(0.95);
+    filter: brightness(0.65) saturate(0.85);
+    box-shadow: none;
+  }
+}
+
+/* Pause on hover so the viewer can study whichever image is up. */
+.showcase__stack:hover .showcase__pic {
+  animation-play-state: paused;
+}
+
+/* Reduced-motion: hold a sensible static state — Layer Deck in
+   front, Arrangement faded behind. */
+@media (prefers-reduced-motion: reduce) {
+  .showcase__stack .showcase__pic { animation: none; }
+  .showcase__stack .showcase__pic--front {
+    z-index: 2;
+    box-shadow:
+      0 30px 60px -20px rgba(0, 0, 0, 0.55),
+      0 12px 24px -10px rgba(245, 166, 35, 0.18);
+  }
+  .showcase__stack .showcase__pic--back {
+    z-index: 1;
+    opacity: 0.7;
+  }
+}
+
+/* Mobile: tighten the geometry so the stack fits the narrower column */
 @media (max-width: 800px) {
   .showcase__stack { aspect-ratio: 5 / 4.4; }
-  .showcase__stack .showcase__pic { width: 82%; }
+  .showcase__stack .showcase__pic { width: 84%; }
 }
 
 .showcase--reverse .showcase__visual { order: -1; }
