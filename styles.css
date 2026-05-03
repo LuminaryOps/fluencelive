@@ -795,76 +795,98 @@ p + p { margin-top: var(--space-4); }
   color: var(--accent);
 }
 
-.showcase__stack .showcase__pic {
+/* Scroll-tied crossfade: two images stacked at the same position,
+   image A starts visible and fades to image B as the user scrolls
+   through the section. The JS sets --scrolly-fade (0 to 1) on the
+   pair element; CSS maps that to the two images' opacities.       */
+.scrolly-pair {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-elev);
+  box-shadow:
+    0 30px 60px -20px rgba(0, 0, 0, 0.55),
+    0 12px 24px -10px rgba(245, 166, 35, 0.12);
+}
+
+.scrolly-pair .showcase__pic {
   position: absolute;
-  width: 76%;
-  animation: stack-cycle 14s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  inset: 0;
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  transition: none;
 }
-.showcase__stack .showcase__pic--back {
-  top: 0;
-  right: 0;
+.scrolly-pair .showcase__pic img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-.showcase__stack .showcase__pic--front {
-  bottom: 0;
-  left: 0;
-  /* Offset by half a cycle so the two alternate */
-  animation-delay: -7s;
+.scrolly-pair .showcase__pic--a { opacity: calc(1 - var(--scrolly-fade, 0)); }
+.scrolly-pair .showcase__pic--b { opacity: var(--scrolly-fade, 0); }
+
+/* Caption pair fades in tandem with its image */
+.scrolly-pair .showcase__pic figcaption {
+  /* base style reused from .showcase__pic figcaption above */
+  transition: none;
 }
 
-/* The cycle: 0-43% in back (recessed), 50-93% in front, brief
-   transitions in between. Each image runs the same animation —
-   the front pic just starts at -7s so the two are always opposite. */
-@keyframes stack-cycle {
-  0%, 43% {
-    z-index: 1;
-    opacity: 0.55;
-    transform: scale(0.95);
-    filter: brightness(0.65) saturate(0.85);
-    box-shadow: none;
-  }
-  50%, 93% {
-    z-index: 2;
-    opacity: 1;
-    transform: scale(1);
-    filter: brightness(1) saturate(1);
-    box-shadow:
-      0 30px 60px -20px rgba(0, 0, 0, 0.55),
-      0 12px 24px -10px rgba(245, 166, 35, 0.18);
-  }
-  100% {
-    z-index: 1;
-    opacity: 0.55;
-    transform: scale(0.95);
-    filter: brightness(0.65) saturate(0.85);
-    box-shadow: none;
-  }
+/* Scroll-progress dot indicator at the bottom right.
+   Two pills; the active one is whichever the fade is currently
+   sitting closer to. Keeps the user oriented in the cycle.       */
+.scrolly-pair__dots {
+  position: absolute;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(10, 10, 12, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  pointer-events: none;
 }
+.scrolly-pair__label--a { color: var(--accent); transition: color 200ms var(--ease); }
+.scrolly-pair__label--b { transition: color 200ms var(--ease); }
+.scrolly-pair[style*="--scrolly-fade"] .scrolly-pair__label--a { color: var(--text-muted); }
+.scrolly-pair__sep { opacity: 0.4; }
+/* Once fade is past 0.5, the B label becomes the accented one.
+   We approximate with attribute selectors driven by JS. */
+.scrolly-pair[data-fade="b"] .scrolly-pair__label--a { color: var(--text-muted); }
+.scrolly-pair[data-fade="b"] .scrolly-pair__label--b { color: var(--accent); }
+.scrolly-pair[data-fade="a"] .scrolly-pair__label--a { color: var(--accent); }
+.scrolly-pair[data-fade="a"] .scrolly-pair__label--b { color: var(--text-muted); }
 
-/* Pause on hover so the viewer can study whichever image is up. */
-.showcase__stack:hover .showcase__pic {
-  animation-play-state: paused;
-}
-
-/* Reduced-motion: hold a sensible static state — Layer Deck in
-   front, Arrangement faded behind. */
+/* Reduced motion: render both images side-by-side as a static
+   fallback so the viewer sees both fully without any scroll
+   interaction. */
 @media (prefers-reduced-motion: reduce) {
-  .showcase__stack .showcase__pic { animation: none; }
-  .showcase__stack .showcase__pic--front {
-    z-index: 2;
-    box-shadow:
-      0 30px 60px -20px rgba(0, 0, 0, 0.55),
-      0 12px 24px -10px rgba(245, 166, 35, 0.18);
+  .scrolly-pair {
+    aspect-ratio: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border-strong);
   }
-  .showcase__stack .showcase__pic--back {
-    z-index: 1;
-    opacity: 0.7;
+  .scrolly-pair .showcase__pic {
+    position: relative;
+    inset: auto;
+    opacity: 1 !important;
   }
-}
-
-/* Mobile: tighten the geometry so the stack fits the narrower column */
-@media (max-width: 800px) {
-  .showcase__stack { aspect-ratio: 5 / 4.4; }
-  .showcase__stack .showcase__pic { width: 84%; }
+  .scrolly-pair__dots { display: none; }
 }
 
 .showcase--reverse .showcase__visual { order: -1; }

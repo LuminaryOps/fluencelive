@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=12" />
+  <link rel="stylesheet" href="styles.css?v=13" />
   <meta property="og:title" content="Fluence | Real-time visuals for live performance" />
   <meta property="og:description" content="A real-time visual performance studio. Layered composition, hardware mapping, audio reactivity, projection mapping. Built for stage." />
   <meta property="og:type" content="website" />
@@ -155,15 +155,18 @@
             Stack layers, group them, blend across 27 modes, transition with cuts, fades, wipes, or pushes.
           </p>
         </div>
-        <div class="showcase__stack">
-          <figure class="showcase__pic showcase__pic--back">
-            <img src="assets/showcase-arrangement.jpg" width="1470" height="1112" alt="The Fluence Arrangement view, showing the same composition as a track-based timeline with clips placed across time." loading="lazy" />
-            <figcaption>Arrangement</figcaption>
-          </figure>
-          <figure class="showcase__pic showcase__pic--front">
+        <div class="scrolly-pair" data-scrolly>
+          <figure class="showcase__pic showcase__pic--a">
             <img src="assets/showcase-deck.jpg" width="1472" height="1117" alt="The Fluence Layer Deck view, showing rows of layers with clip slots arranged as a grid for live triggering." loading="lazy" />
-            <figcaption>Layer Deck</figcaption>
           </figure>
+          <figure class="showcase__pic showcase__pic--b">
+            <img src="assets/showcase-arrangement.jpg" width="1470" height="1112" alt="The Fluence Arrangement view, showing the same composition as a track-based timeline with clips placed across time." loading="lazy" />
+          </figure>
+          <div class="scrolly-pair__dots">
+            <span class="scrolly-pair__label--a">Layer Deck</span>
+            <span class="scrolly-pair__sep">·</span>
+            <span class="scrolly-pair__label--b">Arrangement</span>
+          </div>
         </div>
       </div>
 
@@ -252,6 +255,6 @@
   </div>
 </footer>
 
-<script src="scripts.js?v=12" defer></script>
+<script src="scripts.js?v=13" defer></script>
 </body>
 </html>

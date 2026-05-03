@@ -64,4 +64,46 @@
       });
     });
   });
+
+  // ── 4. Scroll-tied crossfades ─────────────────────────────────
+  // For each [data-scrolly] element, set --scrolly-fade (0..1) on
+  // it based on how far through the viewport its bounding box has
+  // travelled. CSS uses that to drive opacity on the two stacked
+  // images. Skipped entirely under prefers-reduced-motion (the CSS
+  // handles the fallback layout).
+  if (!reduceMotion) {
+    const scrollyEls = document.querySelectorAll('[data-scrolly]');
+    if (scrollyEls.length) {
+      const FADE_START = 0.30;
+      const FADE_END   = 0.70;
+      let rafScheduled = false;
+
+      const update = () => {
+        rafScheduled = false;
+        const vh = window.innerHeight;
+        scrollyEls.forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          const range = rect.height + vh;
+          const traveled = vh - rect.top;
+          const progress = Math.max(0, Math.min(1, traveled / range));
+          let fade;
+          if (progress <= FADE_START) fade = 0;
+          else if (progress >= FADE_END) fade = 1;
+          else fade = (progress - FADE_START) / (FADE_END - FADE_START);
+          el.style.setProperty('--scrolly-fade', fade.toFixed(3));
+          el.setAttribute('data-fade', fade < 0.5 ? 'a' : 'b');
+        });
+      };
+
+      const onScroll = () => {
+        if (rafScheduled) return;
+        rafScheduled = true;
+        requestAnimationFrame(update);
+      };
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      update();
+    }
+  }
 })();
