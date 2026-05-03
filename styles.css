@@ -755,11 +755,14 @@ p + p { margin-top: var(--space-4); }
   object-fit: cover;
 }
 
-/* Variant: two stacked images with captions, used where one section
-   needs to compare two states / views side-by-side. */
-.showcase__dual {
-  display: grid;
-  gap: var(--space-4);
+/* Variant: two images offset diagonally — front and back occupying
+   the same space, communicating "two views of the same thing"
+   without reading as a vertical list. The pair drifts apart on
+   hover for a subtle parallax cue. */
+.showcase__stack {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  width: 100%;
 }
 
 .showcase__pic {
@@ -769,11 +772,9 @@ p + p { margin-top: var(--space-4); }
   overflow: hidden;
   border: 1px solid var(--border-strong);
   background: var(--bg-elev);
-  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
-}
-.showcase__pic:hover {
-  border-color: rgba(255, 255, 255, 0.22);
-  transform: translateY(-2px);
+  transition: transform var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease),
+              border-color var(--dur) var(--ease);
 }
 .showcase__pic img {
   display: block;
@@ -792,6 +793,38 @@ p + p { margin-top: var(--space-4); }
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
+}
+
+.showcase__stack .showcase__pic {
+  position: absolute;
+  width: 78%;
+}
+.showcase__stack .showcase__pic--back {
+  top: 0;
+  right: 0;
+  z-index: 1;
+  opacity: 0.9;
+}
+.showcase__stack .showcase__pic--front {
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  box-shadow:
+    0 30px 60px -20px rgba(0, 0, 0, 0.55),
+    0 12px 24px -10px rgba(245, 166, 35, 0.18);
+}
+.showcase__stack:hover .showcase__pic--front {
+  transform: translate(-6px, -6px);
+}
+.showcase__stack:hover .showcase__pic--back {
+  transform: translate(6px, 6px);
+  opacity: 1;
+}
+
+/* Mobile: offset still works but tighten the geometry */
+@media (max-width: 800px) {
+  .showcase__stack { aspect-ratio: 5 / 4.4; }
+  .showcase__stack .showcase__pic { width: 82%; }
 }
 
 .showcase--reverse .showcase__visual { order: -1; }
