@@ -204,12 +204,18 @@
       let paused = false;
       let running = false;
 
+      // Reset clears INLINE first then cancels animations.
+      // Order matters: if we cancelled first while fill:forwards
+      // was holding the end state, computed value would briefly
+      // fall back to the FROM-value inline style before we cleared
+      // it. Clearing inline first keeps the animation in charge of
+      // the visible state until the cancel fully takes over.
       const reset = (clip) => {
-        clip.getAnimations().forEach((anim) => anim.cancel());
         clip.style.opacity = '';
         clip.style.transform = '';
         clip.style.clipPath = '';
         clip.style.zIndex = '';
+        clip.getAnimations().forEach((anim) => anim.cancel());
       };
 
       // Initial state: A on top
@@ -219,7 +225,20 @@
       b.style.zIndex = '1';
       nameEl.textContent = transitions[0].label;
 
-      const runTransition = (fromClip, toClip, type) => {
+      // Run an animation, then commit its end state to inline so
+      // we don't depend on fill:forwards hanging around between
+      // transitions.
+      const runAndCommit = async (clip, keyframes, options, endStyle) => {
+        const anim = clip.animate(keyframes, { ...options, fill: 'forwards' });
+        try {
+          await anim.finished;
+        } finally {
+          Object.assign(clip.style, endStyle);
+          anim.cancel();
+        }
+      };
+
+      const runTransition = async (fromClip, toClip, type) => {
         // Clean slate
         reset(fromClip);
         reset(toClip);
@@ -231,40 +250,49 @@
 
         if (type === 'cut') {
           fromClip.style.opacity = '0';
-          return Promise.resolve();
+          return;
         }
         if (type === 'fade') {
           toClip.style.opacity = '0';
           void toClip.offsetWidth;
-          return toClip.animate(
+          await runAndCommit(
+            toClip,
             [{ opacity: 0 }, { opacity: 1 }],
-            { duration: DURATION_MS, easing: 'ease', fill: 'forwards' }
-          ).finished;
+            { duration: DURATION_MS, easing: 'ease' },
+            { opacity: '1' }
+          );
+          return;
         }
         if (type === 'wipe') {
           toClip.style.clipPath = 'inset(0 100% 0 0)';
           void toClip.offsetWidth;
-          return toClip.animate(
+          await runAndCommit(
+            toClip,
             [{ clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0 0 0)' }],
-            { duration: DURATION_MS, easing: 'ease', fill: 'forwards' }
-          ).finished;
+            { duration: DURATION_MS, easing: 'ease' },
+            { clipPath: 'inset(0 0 0 0)' }
+          );
+          return;
         }
         if (type === 'push') {
           toClip.style.transform = 'translateX(100%)';
           void toClip.offsetWidth;
           const easing = 'cubic-bezier(0.4, 0, 0.2, 1)';
-          return Promise.all([
-            toClip.animate(
+          await Promise.all([
+            runAndCommit(
+              toClip,
               [{ transform: 'translateX(100%)' }, { transform: 'translateX(0)' }],
-              { duration: DURATION_MS, easing, fill: 'forwards' }
-            ).finished,
-            fromClip.animate(
+              { duration: DURATION_MS, easing },
+              { transform: 'translateX(0)' }
+            ),
+            runAndCommit(
+              fromClip,
               [{ transform: 'translateX(0)' }, { transform: 'translateX(-100%)' }],
-              { duration: DURATION_MS, easing, fill: 'forwards' }
-            ).finished,
+              { duration: DURATION_MS, easing },
+              { transform: 'translateX(-100%)' }
+            ),
           ]);
         }
-        return Promise.resolve();
       };
 
       const tick = async () => {
