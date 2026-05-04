@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=16" />
+  <link rel="stylesheet" href="styles.css?v=17" />
 </head>
 <body>
 
@@ -245,57 +245,26 @@
         </figure>
       </div>
 
-      <!-- Blend modes: live CSS demo + compact list -->
-      <div class="reveal" style="margin-top: var(--space-7);">
-        <h3 style="text-align:center;">27 blend modes.</h3>
-        <p class="text-muted" style="text-align:center; max-width: 620px; margin: var(--space-3) auto 0;">
-          From standard composite to creative keying. Below: the same orange and blue layers,
-          eight of the modes Fluence ships.
-        </p>
-
-        <div class="bm-grid">
-          <div class="bm-demo"><div class="bm-demo__stage" style="--bm: normal;"></div><div class="bm-demo__label">Normal</div></div>
-          <div class="bm-demo"><div class="bm-demo__stage" style="--bm: multiply;"></div><div class="bm-demo__label">Multiply</div></div>
-          <div class="bm-demo"><div class="bm-demo__stage" style="--bm: screen;"></div><div class="bm-demo__label">Screen</div></div>
-          <div class="bm-demo"><div class="bm-demo__stage" style="--bm: overlay;"></div><div class="bm-demo__label">Overlay</div></div>
-          <div class="bm-demo"><div class="bm-demo__stage" style="--bm: hard-light;"></div><div class="bm-demo__label">Hard Light</div></div>
-          <div class="bm-demo"><div class="bm-demo__stage" style="--bm: soft-light;"></div><div class="bm-demo__label">Soft Light</div></div>
-          <div class="bm-demo"><div class="bm-demo__stage" style="--bm: difference;"></div><div class="bm-demo__label">Difference</div></div>
-          <div class="bm-demo"><div class="bm-demo__stage" style="--bm: color-dodge;"></div><div class="bm-demo__label">Color Dodge</div></div>
+      <div class="showcase reveal" style="margin-top: var(--space-7);">
+        <div class="showcase__copy">
+          <span class="eyebrow">Blend modes</span>
+          <h3>Twenty-seven ways to mix.</h3>
+          <p>
+            From standard composite to creative keying. Pick how light, color, and detail combine on every layer or
+            group. Change live, no rebuild.
+          </p>
         </div>
-
-        <div class="bm-list">
-          <div class="bm-list__heading">All 27 modes</div>
-          <div class="bm-list__items">
-            <span class="bm-pill">Normal</span>
-            <span class="bm-pill">Add</span>
-            <span class="bm-pill">50% Add</span>
-            <span class="bm-pill">50% Lighten</span>
-            <span class="bm-pill">Multiply</span>
-            <span class="bm-pill">Screen</span>
-            <span class="bm-pill">Overlay</span>
-            <span class="bm-pill">Hard Light</span>
-            <span class="bm-pill">Soft Light</span>
-            <span class="bm-pill">Vivid Light</span>
-            <span class="bm-pill">Linear Light</span>
-            <span class="bm-pill">Pin Light</span>
-            <span class="bm-pill">Hard Mix</span>
-            <span class="bm-pill">Darken</span>
-            <span class="bm-pill">Lighten</span>
-            <span class="bm-pill">Color Burn</span>
-            <span class="bm-pill">Color Dodge</span>
-            <span class="bm-pill">Linear Burn</span>
-            <span class="bm-pill">Linear Dodge</span>
-            <span class="bm-pill">Difference</span>
-            <span class="bm-pill">Difference Inv</span>
-            <span class="bm-pill">Subtract</span>
-            <span class="bm-pill">Exclusion</span>
-            <span class="bm-pill">Divide</span>
-            <span class="bm-pill">Luma is Alpha</span>
-            <span class="bm-pill">Luma Key</span>
-            <span class="bm-pill">Luma Key Inv</span>
+        <figure class="showcase__visual">
+          <div class="bm-stage" data-bm-cycle aria-label="Blend mode preview, cycling through several modes">
+            <div class="bm-stage__bg" aria-hidden="true"></div>
+            <div class="bm-stage__fg bm-stage__fg--a" aria-hidden="true"></div>
+            <div class="bm-stage__fg bm-stage__fg--b" aria-hidden="true"></div>
+            <div class="bm-stage__label">
+              <span class="bm-stage__eyebrow">Blend mode</span>
+              <span class="bm-stage__name">Screen</span>
+            </div>
           </div>
-        </div>
+        </figure>
       </div>
 
       <div class="showcase showcase--reverse reveal" style="margin-top: var(--space-7);">
@@ -513,6 +482,6 @@
   </div>
 </footer>
 
-<script src="scripts.js?v=16" defer></script>
+<script src="scripts.js?v=17" defer></script>
 </body>
 </html>

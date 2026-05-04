@@ -592,107 +592,77 @@ p + p { margin-top: var(--space-4); }
   line-height: 1.6;
 }
 
-/* ── Blend-mode demo (real CSS mix-blend-mode previews) ───────── */
+/* ── Blend-mode showcase: single auto-cycling demo ───────────── */
+/*  One stage that cycles through a handful of mix-blend-mode    */
+/*  previews. The .bm-stage fills its showcase__visual slot. Two */
+/*  foreground layers crossfade so the mode change is smooth.    */
 
-.bm-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: var(--space-3);
-  margin-top: var(--space-5);
-}
-
-.bm-demo {
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  overflow: hidden;
-  background: var(--bg-elev);
-  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
-}
-.bm-demo:hover {
-  border-color: var(--border-strong);
-  transform: translateY(-2px);
-}
-
-.bm-demo__stage {
+.bm-stage {
   position: relative;
-  aspect-ratio: 16 / 10;
-  background:
-    radial-gradient(ellipse at 30% 50%, rgba(255, 122, 24, 0.95), rgba(245, 166, 35, 0.0) 60%),
-    radial-gradient(ellipse at 70% 50%, rgba(60, 130, 255, 0.9), rgba(60, 130, 255, 0.0) 60%),
-    #0a0a0c;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   isolation: isolate;
+  background: #0a0a18;
 }
 
-.bm-demo__stage::before,
-.bm-demo__stage::after {
-  content: "";
+.bm-stage__bg {
   position: absolute;
-  width: 60%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  top: 50%;
-  filter: blur(0.5px);
-}
-.bm-demo__stage::before {
-  left: 8%;
-  transform: translateY(-50%);
-  background: radial-gradient(circle, #ff7a18 0%, #c93f00 70%, transparent 100%);
-}
-.bm-demo__stage::after {
-  right: 8%;
-  transform: translateY(-50%);
-  background: radial-gradient(circle, #4d8eff 0%, #1f3aaa 70%, transparent 100%);
-  mix-blend-mode: var(--bm, normal);
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 80% at 22% 30%, #5b3aff, transparent 65%),
+    radial-gradient(ellipse 65% 75% at 78% 70%, #00c2b3, transparent 65%),
+    radial-gradient(ellipse 55% 65% at 60% 25%, #ff3d6d, transparent 60%),
+    radial-gradient(ellipse 60% 70% at 30% 80%, #ffd166, transparent 60%),
+    linear-gradient(135deg, #14143a 0%, #0a0a18 100%);
 }
 
-.bm-demo__label {
-  padding: var(--space-3) var(--space-4);
-  border-top: 1px solid var(--border);
-  font-size: var(--fs-sm);
-  font-weight: 500;
-  color: var(--text-muted);
+.bm-stage__fg {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 700ms ease;
+  background:
+    radial-gradient(ellipse 50% 60% at 50% 50%, #ff7a18, transparent 70%),
+    radial-gradient(ellipse 32% 42% at 28% 32%, #f5a623, transparent 70%),
+    radial-gradient(ellipse 32% 42% at 72% 70%, #ffd166, transparent 70%);
+}
+
+.bm-stage .bm-stage__fg--a { opacity: 1; }
+.bm-stage[data-active="b"] .bm-stage__fg--a { opacity: 0; }
+.bm-stage[data-active="b"] .bm-stage__fg--b { opacity: 1; }
+
+.bm-stage__label {
+  position: absolute;
+  left: var(--space-4);
+  bottom: var(--space-4);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-}
-.bm-demo__label .bm-demo__hint {
-  font-size: var(--fs-xs);
-  color: var(--text-faint);
-  font-weight: 400;
+  flex-direction: column;
+  gap: 4px;
+  pointer-events: none;
+  z-index: 2;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
-/* Compact list of remaining blend modes */
-.bm-list {
-  margin-top: var(--space-6);
-  padding: var(--space-5);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background: var(--bg-raised);
-}
-.bm-list__heading {
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  letter-spacing: 0.1em;
+.bm-stage__eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--text-faint);
-  margin-bottom: var(--space-3);
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
 }
-.bm-list__items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
+
+.bm-stage__name {
+  font-size: 24px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.01em;
+  transition: opacity 350ms ease;
 }
-.bm-pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.3rem 0.7rem;
-  border-radius: 999px;
-  font-size: var(--fs-xs);
-  font-weight: 500;
-  color: var(--text-muted);
-  background: var(--bg-elev);
-  border: 1px solid var(--border);
+
+@media (prefers-reduced-motion: reduce) {
+  .bm-stage__fg { transition: none; }
+  .bm-stage__name { transition: none; }
 }
 
 /* ── Stat strip (big numbers row) ─────────────────────────────── */

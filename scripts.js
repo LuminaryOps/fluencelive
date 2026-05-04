@@ -106,4 +106,71 @@
       update();
     }
   }
+
+  // ── 5. Blend mode demo cycle ──────────────────────────────────
+  // Walks a fixed list of CSS mix-blend-mode values on the
+  // foreground layer of [data-bm-cycle], crossfading between two
+  // stacked foregrounds so the change reads as smooth, not a jump.
+  // Pauses when off-screen and on hover so the user can dwell.
+  if (!reduceMotion) {
+    document.querySelectorAll('[data-bm-cycle]').forEach((stage) => {
+      const a = stage.querySelector('.bm-stage__fg--a');
+      const b = stage.querySelector('.bm-stage__fg--b');
+      const nameEl = stage.querySelector('.bm-stage__name');
+      if (!a || !b || !nameEl) return;
+
+      const modes = [
+        { mode: 'screen',      label: 'Screen' },
+        { mode: 'multiply',    label: 'Multiply' },
+        { mode: 'difference',  label: 'Difference' },
+        { mode: 'color-dodge', label: 'Color Dodge' },
+        { mode: 'overlay',     label: 'Overlay' },
+      ];
+
+      let idx = 0;
+      let activeIsA = true;
+      a.style.mixBlendMode = modes[0].mode;
+      nameEl.textContent = modes[0].label;
+      stage.setAttribute('data-active', 'a');
+
+      let intervalId = null;
+      let paused = false;
+
+      const tick = () => {
+        if (paused) return;
+        idx = (idx + 1) % modes.length;
+        const next = modes[idx];
+        const inactive = activeIsA ? b : a;
+        inactive.style.mixBlendMode = next.mode;
+        // Two RAFs: ensure the mode is committed before the active swap
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            stage.setAttribute('data-active', activeIsA ? 'b' : 'a');
+            activeIsA = !activeIsA;
+          });
+        });
+        // Label crossfade — fade out, swap text, fade back in
+        nameEl.style.opacity = '0';
+        setTimeout(() => {
+          nameEl.textContent = next.label;
+          nameEl.style.opacity = '1';
+        }, 350);
+      };
+
+      const start = () => { if (!intervalId) intervalId = setInterval(tick, 3500); };
+      const stop  = () => { if (intervalId) { clearInterval(intervalId); intervalId = null; } };
+
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          for (const entry of entries) entry.isIntersecting ? start() : stop();
+        }, { threshold: 0.1 });
+        io.observe(stage);
+      } else {
+        start();
+      }
+
+      stage.addEventListener('mouseenter', () => { paused = true; });
+      stage.addEventListener('mouseleave', () => { paused = false; });
+    });
+  }
 })();
