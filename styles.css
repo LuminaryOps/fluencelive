@@ -609,12 +609,7 @@ p + p { margin-top: var(--space-4); }
 .bm-stage__bg {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 70% 80% at 22% 30%, #5b3aff, transparent 65%),
-    radial-gradient(ellipse 65% 75% at 78% 70%, #00c2b3, transparent 65%),
-    radial-gradient(ellipse 55% 65% at 60% 25%, #ff3d6d, transparent 60%),
-    radial-gradient(ellipse 60% 70% at 30% 80%, #ffd166, transparent 60%),
-    linear-gradient(135deg, #14143a 0%, #0a0a18 100%);
+  background: #0a0a18 url('assets/bm-bg.jpg') center / cover no-repeat;
 }
 
 .bm-stage__fg {
@@ -622,10 +617,7 @@ p + p { margin-top: var(--space-4); }
   inset: 0;
   opacity: 0;
   transition: opacity 700ms ease;
-  background:
-    radial-gradient(ellipse 50% 60% at 50% 50%, #ff7a18, transparent 70%),
-    radial-gradient(ellipse 32% 42% at 28% 32%, #f5a623, transparent 70%),
-    radial-gradient(ellipse 32% 42% at 72% 70%, #ffd166, transparent 70%);
+  background: url('assets/bm-fg.png') center / cover no-repeat;
 }
 
 .bm-stage .bm-stage__fg--a { opacity: 1; }
