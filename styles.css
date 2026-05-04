@@ -679,7 +679,7 @@ p + p { margin-top: var(--space-4); }
   will-change: opacity, transform, clip-path;
 }
 
-.tx-stage__clip--a { background-image: url('assets/bm-bg.jpg'); }
+.tx-stage__clip--a { background-image: url('assets/transition-a.jpg'); }
 .tx-stage__clip--b { background-image: url('assets/transition-b.jpg'); }
 
 .tx-stage__label {
