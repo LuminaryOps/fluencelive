@@ -657,6 +657,143 @@ p + p { margin-top: var(--space-4); }
   .bm-stage__name { transition: none; }
 }
 
+/* ── Transitions showcase: cycles cut/fade/wipe/push ─────────── */
+/*  Two stacked clip layers with image backgrounds. JS drives    */
+/*  the active transition via WAAPI animations (see scripts.js). */
+
+.tx-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  isolation: isolate;
+  background: #0a0a18;
+}
+
+.tx-stage__clip {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  will-change: opacity, transform, clip-path;
+}
+
+.tx-stage__clip--a { background-image: url('assets/bm-bg.jpg'); }
+.tx-stage__clip--b { background-image: url('assets/transition-b.jpg'); }
+
+.tx-stage__label {
+  position: absolute;
+  left: var(--space-4);
+  bottom: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  pointer-events: none;
+  z-index: 10;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.tx-stage__eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+}
+
+.tx-stage__name {
+  font-size: 24px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.01em;
+  transition: opacity 250ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tx-stage__name { transition: none; }
+}
+
+/* ── Spout diagram: animated illustration ────────────────────── */
+/*  Inline SVG with frame rectangles flowing along the arrows    */
+/*  and ambient motion inside each window viewport.              */
+
+.showcase__visual--diagram {
+  background: linear-gradient(135deg, #0e0e1c 0%, #14142a 100%);
+  display: grid;
+  place-items: center;
+  padding: var(--space-4);
+}
+
+.showcase__visual--diagram .spout-svg {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  display: block;
+}
+
+@keyframes spoutFrameRight {
+  0%   { transform: translateX(0);    opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateX(75px); opacity: 0; }
+}
+@keyframes spoutFrameLeft {
+  0%   { transform: translateX(0);     opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateX(-75px); opacity: 0; }
+}
+
+.spout-frame {
+  filter: drop-shadow(0 0 4px rgba(255, 122, 24, 0.7));
+}
+.spout-frame--right {
+  animation: spoutFrameRight 2.4s linear infinite;
+}
+.spout-frame--right-1 { animation-delay: 0s; }
+.spout-frame--right-2 { animation-delay: 0.8s; }
+.spout-frame--right-3 { animation-delay: 1.6s; }
+
+.spout-frame--left {
+  animation: spoutFrameLeft 2.4s linear infinite;
+}
+.spout-frame--left-1 { animation-delay: 0.4s; }
+.spout-frame--left-2 { animation-delay: 1.2s; }
+.spout-frame--left-3 { animation-delay: 2.0s; }
+
+@keyframes spoutWavePulse {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 0.95; }
+}
+.spout-waves path:nth-child(1) {
+  animation: spoutWavePulse 4s ease-in-out infinite;
+}
+.spout-waves path:nth-child(2) {
+  animation: spoutWavePulse 4s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+.spout-waves path:nth-child(3) {
+  animation: spoutWavePulse 4s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+@keyframes spoutRingsPulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
+}
+.spout-rings {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: spoutRingsPulse 3.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spout-frame, .spout-waves path, .spout-rings {
+    animation: none;
+  }
+}
+
 /* ── Stat strip (big numbers row) ─────────────────────────────── */
 
 .stat-strip {

@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=19" />
+  <link rel="stylesheet" href="styles.css?v=20" />
 </head>
 <body>
 
@@ -277,7 +277,16 @@
             creates a transition with the overlap duration.
           </p>
         </div>
-        <div class="showcase__visual"></div>
+        <figure class="showcase__visual">
+          <div class="tx-stage" data-tx-cycle aria-label="Transition preview, cycling through cut, fade, wipe, and push">
+            <div class="tx-stage__clip tx-stage__clip--a" aria-hidden="true"></div>
+            <div class="tx-stage__clip tx-stage__clip--b" aria-hidden="true"></div>
+            <div class="tx-stage__label">
+              <span class="tx-stage__eyebrow">Transition</span>
+              <span class="tx-stage__name">Cut</span>
+            </div>
+          </div>
+        </figure>
       </div>
 
       <div class="showcase reveal">
@@ -327,8 +336,63 @@
             as clips. Build cross-app rigs without ever encoding video.
           </p>
         </div>
-        <figure class="showcase__visual showcase__visual--image showcase__visual--contain">
-          <img src="assets/spout-illustration.svg" width="480" height="300" alt="Two app windows connected by bidirectional arrows, illustrating live GPU texture sharing in and out." loading="lazy" />
+        <figure class="showcase__visual showcase__visual--diagram">
+          <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" class="spout-svg" role="img" aria-labelledby="spout-illo-title">
+            <title id="spout-illo-title">Two apps exchanging live GPU textures, bidirectionally.</title>
+            <defs>
+              <linearGradient id="fl-warm" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#ff7a18"/>
+                <stop offset="100%" stop-color="#f5a623"/>
+              </linearGradient>
+              <linearGradient id="fl-warm-soft" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#ff7a18" stop-opacity="0.15"/>
+                <stop offset="100%" stop-color="#f5a623" stop-opacity="0.15"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Left app window -->
+            <rect x="50" y="80" width="140" height="140" rx="12" fill="url(#fl-warm-soft)" stroke="url(#fl-warm)" stroke-width="2.5"/>
+            <line x1="50" y1="108" x2="190" y2="108" stroke="url(#fl-warm)" stroke-width="1.5" opacity="0.5"/>
+            <circle cx="64" cy="94" r="3" fill="url(#fl-warm)"/>
+            <circle cx="76" cy="94" r="3" fill="url(#fl-warm)" opacity="0.5"/>
+            <circle cx="88" cy="94" r="3" fill="url(#fl-warm)" opacity="0.3"/>
+            <g class="spout-waves">
+              <path d="M 65 135 Q 95 120 125 135 T 175 140" fill="none" stroke="url(#fl-warm)" stroke-width="2.5" opacity="0.85"/>
+              <path d="M 65 160 Q 95 145 125 160 T 175 165" fill="none" stroke="url(#fl-warm)" stroke-width="2" opacity="0.55"/>
+              <path d="M 65 185 Q 95 170 125 185 T 175 190" fill="none" stroke="url(#fl-warm)" stroke-width="2" opacity="0.3"/>
+            </g>
+
+            <!-- Right app window -->
+            <rect x="290" y="80" width="140" height="140" rx="12" fill="url(#fl-warm-soft)" stroke="url(#fl-warm)" stroke-width="2.5"/>
+            <line x1="290" y1="108" x2="430" y2="108" stroke="url(#fl-warm)" stroke-width="1.5" opacity="0.5"/>
+            <circle cx="304" cy="94" r="3" fill="url(#fl-warm)"/>
+            <circle cx="316" cy="94" r="3" fill="url(#fl-warm)" opacity="0.5"/>
+            <circle cx="328" cy="94" r="3" fill="url(#fl-warm)" opacity="0.3"/>
+            <g class="spout-rings">
+              <circle cx="360" cy="160" r="36" fill="none" stroke="url(#fl-warm)" stroke-width="2" opacity="0.3"/>
+              <circle cx="360" cy="160" r="24" fill="none" stroke="url(#fl-warm)" stroke-width="2" opacity="0.55"/>
+              <circle cx="360" cy="160" r="12" fill="none" stroke="url(#fl-warm)" stroke-width="2" opacity="0.85"/>
+              <circle cx="360" cy="160" r="4" fill="url(#fl-warm)"/>
+            </g>
+
+            <!-- Top arrow: left -> right -->
+            <line x1="195" y1="135" x2="280" y2="135" stroke="url(#fl-warm)" stroke-width="3" stroke-linecap="round"/>
+            <polyline points="270,127 285,135 270,143" fill="none" stroke="url(#fl-warm)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+            <!-- Bottom arrow: right -> left -->
+            <line x1="285" y1="165" x2="200" y2="165" stroke="url(#fl-warm)" stroke-width="3" stroke-linecap="round"/>
+            <polyline points="210,157 195,165 210,173" fill="none" stroke="url(#fl-warm)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+            <!-- Flowing frames along the top arrow (left -> right) -->
+            <rect class="spout-frame spout-frame--right spout-frame--right-1" x="200" y="131" width="10" height="8" rx="2" fill="#ff7a18"/>
+            <rect class="spout-frame spout-frame--right spout-frame--right-2" x="200" y="131" width="10" height="8" rx="2" fill="#ff7a18"/>
+            <rect class="spout-frame spout-frame--right spout-frame--right-3" x="200" y="131" width="10" height="8" rx="2" fill="#ff7a18"/>
+
+            <!-- Flowing frames along the bottom arrow (right -> left) -->
+            <rect class="spout-frame spout-frame--left spout-frame--left-1" x="270" y="161" width="10" height="8" rx="2" fill="#f5a623"/>
+            <rect class="spout-frame spout-frame--left spout-frame--left-2" x="270" y="161" width="10" height="8" rx="2" fill="#f5a623"/>
+            <rect class="spout-frame spout-frame--left spout-frame--left-3" x="270" y="161" width="10" height="8" rx="2" fill="#f5a623"/>
+          </svg>
         </figure>
       </div>
     </div>
@@ -482,6 +546,6 @@
   </div>
 </footer>
 
-<script src="scripts.js?v=19" defer></script>
+<script src="scripts.js?v=20" defer></script>
 </body>
 </html>

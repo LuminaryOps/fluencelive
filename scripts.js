@@ -173,4 +173,155 @@
       stage.addEventListener('mouseleave', () => { paused = false; });
     });
   }
+
+  // ── 6. Transitions demo cycle ────────────────────────────────
+  // Two stacked clip layers cycle through cut, fade, wipe, push.
+  // WAAPI is used so each transition is a self-contained
+  // animation; styles get reset to a clean baseline before each
+  // run, so transitions don't fight each other's leftover state.
+  if (!reduceMotion) {
+    document.querySelectorAll('[data-tx-cycle]').forEach((stage) => {
+      const a = stage.querySelector('.tx-stage__clip--a');
+      const b = stage.querySelector('.tx-stage__clip--b');
+      const nameEl = stage.querySelector('.tx-stage__name');
+      if (!a || !b || !nameEl) return;
+
+      const transitions = [
+        { type: 'cut',  label: 'Cut' },
+        { type: 'fade', label: 'Fade' },
+        { type: 'wipe', label: 'Wipe' },
+        { type: 'push', label: 'Push' },
+      ];
+
+      const DWELL_MS    = 2200;
+      const DURATION_MS = 900;
+
+      // Start with A on top, B underneath. Both opaque.
+      let currentIsA = true;
+      let txIdx = 0;
+      let timeoutId = null;
+      let stopped = false;
+      let paused = false;
+      let running = false;
+
+      const reset = (clip) => {
+        clip.getAnimations().forEach((anim) => anim.cancel());
+        clip.style.opacity = '';
+        clip.style.transform = '';
+        clip.style.clipPath = '';
+        clip.style.zIndex = '';
+      };
+
+      // Initial state: A on top
+      reset(a);
+      reset(b);
+      a.style.zIndex = '2';
+      b.style.zIndex = '1';
+      nameEl.textContent = transitions[0].label;
+
+      const runTransition = (fromClip, toClip, type) => {
+        // Clean slate
+        reset(fromClip);
+        reset(toClip);
+        // Layering: incoming on top
+        toClip.style.zIndex = '2';
+        fromClip.style.zIndex = '1';
+        // Force reflow so resets apply before the new animation starts
+        void toClip.offsetWidth;
+
+        if (type === 'cut') {
+          fromClip.style.opacity = '0';
+          return Promise.resolve();
+        }
+        if (type === 'fade') {
+          toClip.style.opacity = '0';
+          void toClip.offsetWidth;
+          return toClip.animate(
+            [{ opacity: 0 }, { opacity: 1 }],
+            { duration: DURATION_MS, easing: 'ease', fill: 'forwards' }
+          ).finished;
+        }
+        if (type === 'wipe') {
+          toClip.style.clipPath = 'inset(0 100% 0 0)';
+          void toClip.offsetWidth;
+          return toClip.animate(
+            [{ clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0 0 0)' }],
+            { duration: DURATION_MS, easing: 'ease', fill: 'forwards' }
+          ).finished;
+        }
+        if (type === 'push') {
+          toClip.style.transform = 'translateX(100%)';
+          void toClip.offsetWidth;
+          const easing = 'cubic-bezier(0.4, 0, 0.2, 1)';
+          return Promise.all([
+            toClip.animate(
+              [{ transform: 'translateX(100%)' }, { transform: 'translateX(0)' }],
+              { duration: DURATION_MS, easing, fill: 'forwards' }
+            ).finished,
+            fromClip.animate(
+              [{ transform: 'translateX(0)' }, { transform: 'translateX(-100%)' }],
+              { duration: DURATION_MS, easing, fill: 'forwards' }
+            ).finished,
+          ]);
+        }
+        return Promise.resolve();
+      };
+
+      const tick = async () => {
+        if (running || paused || stopped) return;
+        running = true;
+        const transition = transitions[txIdx % transitions.length];
+        txIdx++;
+
+        const fromClip = currentIsA ? a : b;
+        const toClip   = currentIsA ? b : a;
+
+        // Label crossfade
+        nameEl.style.opacity = '0';
+        setTimeout(() => {
+          nameEl.textContent = transition.label;
+          nameEl.style.opacity = '1';
+        }, 220);
+
+        try {
+          await runTransition(fromClip, toClip, transition.type);
+        } catch (e) {
+          // animation cancelled (e.g., paused) — fine
+        }
+
+        currentIsA = !currentIsA;
+        running = false;
+      };
+
+      const schedule = () => {
+        if (stopped) return;
+        timeoutId = setTimeout(async () => {
+          await tick();
+          schedule();
+        }, DWELL_MS);
+      };
+
+      const start = () => { if (!timeoutId && !stopped) { stopped = false; schedule(); } };
+      const stop  = () => { stopped = true; if (timeoutId) { clearTimeout(timeoutId); timeoutId = null; } };
+
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              stopped = false;
+              if (!timeoutId) schedule();
+            } else {
+              stop();
+            }
+          }
+        }, { threshold: 0.1 });
+        io.observe(stage);
+      } else {
+        schedule();
+      }
+
+      stage.addEventListener('mouseenter', () => { paused = true; });
+      stage.addEventListener('mouseleave', () => { paused = false; });
+    });
+  }
 })();
