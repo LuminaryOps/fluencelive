@@ -728,7 +728,9 @@ p + p { margin-top: var(--space-4); }
 /*  Inline SVG with frame rectangles flowing along the arrows    */
 /*  and ambient motion inside each window viewport.              */
 
-.showcase__visual--diagram {
+/* Chain the base class to win specificity over .showcase__visual,
+   which is defined later in the file with background: var(--bg-elev). */
+.showcase__visual.showcase__visual--diagram {
   background: linear-gradient(135deg, #0e0e1c 0%, #14142a 100%);
   display: grid;
   place-items: center;
