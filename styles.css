@@ -803,10 +803,16 @@ p + p { margin-top: var(--space-4); }
 /* Chain the base class to win specificity over .showcase__visual,
    which is defined later in the file with background: var(--bg-elev). */
 .showcase__visual.showcase__visual--diagram {
-  background: linear-gradient(135deg, #0e0e1c 0%, #14142a 100%);
+  /* Inherit the same bg-elev surface as the screenshot panels so
+     this row reads as "panel of the rest of the page." A faint
+     amber radial fills the dead space behind the diagram so it
+     doesn't look stranded. */
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 50%, rgba(245, 166, 35, 0.07), transparent 65%),
+    var(--bg-elev);
   display: grid;
   place-items: center;
-  padding: var(--space-4);
+  padding: var(--space-3);
 }
 
 .showcase__visual--diagram .spout-svg {
