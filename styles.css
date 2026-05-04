@@ -754,6 +754,9 @@ p + p { margin-top: var(--space-4); }
   height: 100%;
   object-fit: cover;
 }
+.showcase__visual--contain img {
+  object-fit: contain;
+}
 
 /* Variant: two images offset diagonally — front and back occupying
    the same space, communicating "two views of the same thing"
