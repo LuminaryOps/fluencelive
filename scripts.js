@@ -22,6 +22,40 @@
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
+  // ── 1b. Mobile hamburger ──────────────────────────────────────
+  // Toggles the nav__links dropdown on small screens. Closes on
+  // link click, Escape, and click-outside. CSS does the visual.
+  const hamburger = document.querySelector('.nav__hamburger');
+  const navLinksEl = document.querySelector('.nav__links');
+  if (hamburger && navLinksEl) {
+    const close = () => {
+      navLinksEl.removeAttribute('data-open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    };
+    const open = () => {
+      navLinksEl.setAttribute('data-open', 'true');
+      hamburger.setAttribute('aria-expanded', 'true');
+    };
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navLinksEl.getAttribute('data-open') === 'true' ? close() : open();
+    });
+    navLinksEl.querySelectorAll('a').forEach((a) =>
+      a.addEventListener('click', close)
+    );
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinksEl.getAttribute('data-open') === 'true') {
+        close();
+        hamburger.focus();
+      }
+    });
+    document.addEventListener('click', (e) => {
+      if (navLinksEl.getAttribute('data-open') !== 'true') return;
+      if (navLinksEl.contains(e.target) || hamburger.contains(e.target)) return;
+      close();
+    });
+  }
+
   // ── 2. Reveal-on-scroll (progressive enhancement) ────────────
   // Default: content is visible. We only opt elements into the
   // fade-in by adding .is-revealable, so if anything below fails,

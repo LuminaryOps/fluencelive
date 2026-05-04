@@ -317,8 +317,66 @@ p + p { margin-top: var(--space-4); }
   gap: var(--space-2);
 }
 
+/* Mobile hamburger — hidden on desktop, shown ≤720px */
+.nav__hamburger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color var(--dur) var(--ease),
+              border-color var(--dur) var(--ease),
+              background var(--dur) var(--ease);
+}
+.nav__hamburger:hover,
+.nav__hamburger[aria-expanded="true"] {
+  color: var(--text);
+  border-color: var(--border-strong);
+  background: var(--bg-elev);
+}
+.nav__hamburger svg { width: 20px; height: 20px; display: block; }
+
 @media (max-width: 720px) {
-  .nav__links { display: none; }
+  .nav__hamburger { display: inline-flex; }
+
+  .nav__links {
+    /* Dropdown overlay below the sticky header.
+       Visibility-hidden so it's not focusable when closed,
+       opacity/translate so the open transition reads. */
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-raised);
+    border-bottom: 1px solid var(--border);
+    padding: var(--space-2) 0;
+    box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 180ms var(--ease),
+                transform 180ms var(--ease),
+                visibility 180ms var(--ease);
+  }
+  .nav__links[data-open="true"] {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+  }
+  .nav__links li { width: 100%; }
+  .nav__links .nav__link {
+    display: block;
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--fs-base);
+  }
 }
 
 /* ── Buttons ──────────────────────────────────────────────────── */
