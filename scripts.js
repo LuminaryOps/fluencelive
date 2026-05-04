@@ -123,7 +123,7 @@
         { mode: 'screen',      label: 'Screen' },
         { mode: 'multiply',    label: 'Multiply' },
         { mode: 'difference',  label: 'Difference' },
-        { mode: 'color-dodge', label: 'Color Dodge' },
+        { mode: 'normal',      label: 'Normal' },
         { mode: 'overlay',     label: 'Overlay' },
       ];
 
