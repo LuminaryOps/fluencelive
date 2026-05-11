@@ -10,6 +10,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css?v=28" />
+  <!--
+    Lemon.js: enables checkout overlays for any <a class="lemonsqueezy-button">
+    on this page. URL is the one LS provides in their dashboard "Embed" snippet.
+    Do not self-host — security patches need to apply automatically.
+  -->
+  <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
 </head>
 <body>
 
@@ -44,7 +50,7 @@
     <div class="container">
       <span class="eyebrow">Download</span>
       <h1>Get Fluence.</h1>
-      <p>In beta. Full feature set unlocked. Pricing and storefront landing soon.</p>
+      <p>Free to download with a watermark. Buy a license to remove it.</p>
     </div>
   </section>
 
@@ -54,14 +60,33 @@
       <div class="reveal" style="max-width: 520px; margin: 0 auto; text-align: center;">
         <div class="price-card price-card--highlight">
           <span class="eyebrow text-accent">Beta</span>
-          <h3 style="margin-top: var(--space-3);">Fluence is in beta</h3>
+          <h3 style="margin-top: var(--space-3);">Fluence Beta</h3>
           <p class="text-muted" style="margin-top: var(--space-3);">
-            We're putting the finishing touches on the storefront. Drop your email and we'll send you the
-            installer link the moment it's ready, plus pricing details when they're locked in.
+            Download Fluence and use the full feature set. A small watermark renders periodically
+            until you activate it with a license key.
           </p>
-          <a class="btn btn--primary btn--lg" href="mailto:admin@fluencelive.com?subject=Fluence%20beta%20signup" style="width:100%; margin-top: var(--space-5);">
-            Email us for early access
+
+          <!-- Free download. Points at the GitHub Releases "latest" URL so it
+               stays stable across versions. Replace the asset filename if the
+               installer name changes. -->
+          <a class="btn btn--primary btn--lg"
+             href="https://github.com/LuminaryOps/fluence-releases/releases/latest/download/Fluence-1.0.0-beta-Setup.exe"
+             style="width:100%; margin-top: var(--space-5);">
+            Download Fluence
           </a>
+
+          <!-- Buy license. The lemonsqueezy-button class hands the click to
+               Lemon.js, which opens the checkout in an overlay on this page
+               (no redirect). `?embed=1` is required for overlay rendering. -->
+          <a class="btn btn--secondary btn--lg lemonsqueezy-button"
+             href="https://fluencelive.lemonsqueezy.com/checkout/buy/1859bd40-5e89-474b-9c8e-9ba568fa2a0d?embed=1"
+             style="width:100%; margin-top: var(--space-3);">
+            Buy Fluence Perpetual License
+          </a>
+
+          <p class="text-muted" style="margin-top: var(--space-4); font-size: 0.9em;">
+            Already have a key? Enter it in Preferences → License inside the app.
+          </p>
         </div>
       </div>
 
