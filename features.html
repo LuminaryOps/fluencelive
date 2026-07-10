@@ -343,11 +343,16 @@
       <div class="showcase showcase--reverse reveal" style="margin-top: var(--space-7);">
         <div class="showcase__copy">
           <span class="eyebrow">Transitions</span>
-          <h3>Cut, fade, wipe, push.</h3>
+          <h3>Forty-eight transitions. Or write your own.</h3>
           <p>
-            Set per-layer transitions for clip switching: instant cuts, crossfades, four directions of wipe, four
-            directions of push. Adjustable duration. On the arrangement timeline, overlapping two clips on a track
-            creates a transition with the overlap duration.
+            Every transition is a shader with tunable parameters &mdash; from clean cuts, fades, wipes, and pushes
+            to glitches, warps, and zooms. Set them per layer with adjustable duration; on the arrangement
+            timeline, overlapping two clips creates a transition from the overlap.
+          </p>
+          <p>
+            Drop your own transition shader into <code>Documents/Fluence/Transitions</code> &mdash; the standard
+            ISF transition contract works unchanged and hot-reloads on save. The A/B crossfader blend is one of
+            these too, so even your master fade can be a custom shader.
           </p>
         </div>
         <figure class="showcase__visual">
