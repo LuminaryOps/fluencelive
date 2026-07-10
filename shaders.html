@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Shaders | Fluence</title>
-  <meta name="description" content="The Fluence shader engine: ISF, GLSL, and Shadertoy formats, live parameters, a GPU compute layer for real simulation, mesh shaders with PBR, and hot reload." />
+  <meta name="description" content="The Fluence shader engine: ISF, GLSL, and Shadertoy formats, live parameters, a GPU compute layer for real simulation, and mesh shaders with PBR." />
   <link rel="icon" type="image/png" href="assets/icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -44,8 +44,8 @@
     <div class="container">
       <span class="eyebrow">Shaders</span>
       <h1>A shader engine, not a shader player.</h1>
-      <p>Three authoring formats, parameters that become instruments, a GPU compute layer for real simulation,
-         and hot reload on save. Every image on this page is Fluence's own output.</p>
+      <p>Three authoring formats, parameters that become instruments, and a GPU compute layer for real
+         simulation. Every image on this page is Fluence's own output.</p>
     </div>
   </section>
 
@@ -89,8 +89,8 @@
 
       <div class="prose reveal" style="text-align:center; margin-top: var(--space-6);">
         <p>Drop files into <code>Documents/Fluence/Shaders</code> and they appear in the browser, organized by the
-        category each shader declares. Edit one while it's playing and it <strong>hot-reloads on save</strong>.
-        A custom shader with a built-in's name overrides it.</p>
+        category each shader declares. There is no build step &mdash; shaders load at runtime, and edits are picked
+        up the next time the shader loads. A custom shader with a built-in's name overrides it.</p>
       </div>
     </div>
   </section>
@@ -267,7 +267,7 @@ void main() {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="9" height="12" rx="1"/><rect x="13" y="6" width="9" height="12" rx="1" opacity="0.5"/><path d="M11 12h2"/></svg>
           </div>
           <h3>Custom transitions</h3>
-          <p>Forty-eight bundled transitions, every one a shader with tunable parameters. Drop your own into <code>Documents/Fluence/Transitions</code> &mdash; the standard ISF transition contract works unchanged, and it hot-reloads on save.</p>
+          <p>Forty-eight bundled transitions, every one a shader with tunable parameters. Drop your own into <code>Documents/Fluence/Transitions</code> &mdash; the standard ISF transition contract works unchanged.</p>
         </div>
 
         <div class="feature reveal">
@@ -298,9 +298,8 @@ void main() {
       </div>
       <div class="prose reveal" style="text-align: center;">
         <p>
-          Every shader is compiled through glslang to SPIR-V and runs on Fluence's wgpu renderer &mdash;
-          <strong>Metal on macOS, Vulkan on Windows</strong> &mdash; with the parameters you move re-uniformed
-          per frame, not recompiled. That's what makes 215 bundled shaders, your folder of customs, and a
+          Shaders compile once and stay resident on the GPU &mdash; the parameters you move update per frame,
+          nothing recompiles. That's what makes 215 bundled shaders, your folder of customs, and a
           half-million-particle simulation feel like clips instead of projects.
         </p>
         <p>
