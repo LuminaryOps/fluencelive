@@ -44,7 +44,7 @@
     <div class="container">
       <span class="eyebrow">Changelog</span>
       <h1>What's shipping.</h1>
-      <p>Release notes start with the 1.0 cut. The current beta is in active development.</p>
+      <p>Release notes for every Fluence version.</p>
     </div>
   </section>
 
@@ -52,16 +52,24 @@
     <div class="container">
       <article class="prose reveal">
 
-        <h2>Beta (current)</h2>
-        <p class="text-muted">
-          Fluence is in active beta development. Detailed release notes will start with the 1.0 release.
-        </p>
+        <h2>2.0.0</h2>
+        <p class="text-muted">The biggest release since launch: a new rendering engine, a second platform, and a control surface for scripts and AI.</p>
+        <ul>
+          <li><strong>New renderer.</strong> The entire engine moved from OpenGL to wgpu &mdash; Metal on macOS, Vulkan on Windows. Modern GPU backends and a foundation for what's next.</li>
+          <li><strong>Fluence on macOS.</strong> Native Apple Silicon build, signed and notarized. Full feature set: Syphon in place of Spout, VideoToolbox-accelerated decode and H.264 encode, AVFoundation capture, ScreenCaptureKit audio, NDI.</li>
+          <li><strong>Control API &amp; MCP.</strong> A built-in local automation API, off by default, plus a bundled MCP bridge &mdash; AI agents and scripts can trigger clips, edit parameters, set up audio-reactive automation, build arrangements, and screenshot the composition.</li>
+          <li><strong>NDI, in and out.</strong> A new NDI clip type receives network video sources, and Fluence's output can publish as an NDI sender. Both platforms.</li>
+          <li><strong>Encoders.</strong> Hap export and recording on macOS, DXV3 encoding parallelized for real-time recording at full frame rate, hardware H.264 on macOS.</li>
+          <li><strong>Fixes.</strong> DXV3 recordings with audio no longer fail at finalize; exports with audio from AVI/WAV-family sources no longer fail; large Control API replies no longer truncate; macOS keyboard handling corrected in web clips and the deck.</li>
+        </ul>
 
         <hr class="divider" style="margin-top: var(--space-7);" />
 
-        <p class="text-faint" style="margin-top: var(--space-6);">
-          Want to be notified when 1.0 ships?
-          Email <a href="mailto:admin@fluencelive.com" style="color: var(--accent)">admin@fluencelive.com</a>.
+        <h2 style="margin-top: var(--space-6);">1.0</h2>
+        <p class="text-muted">
+          Initial Windows release: the full composition engine &mdash; 15 clip types, layers and groups,
+          effects at four scopes, keyboard/MIDI/OSC mapping, timeline and FFT automation, arrangement,
+          projection mapping with edge blending and warping, live recording, and twelve export codecs.
         </p>
 
       </article>

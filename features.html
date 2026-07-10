@@ -53,7 +53,7 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="eyebrow">Clip library</span>
-        <h2>Fifteen clip types.</h2>
+        <h2>Sixteen clip types.</h2>
         <p class="section-header__lede">From shaders and video to live capture and built-in generators. Mix any of them on any layer.</p>
       </div>
 
@@ -119,13 +119,13 @@
           <div class="clip-grid" style="text-align:left;">
             <div class="clip-card">
               <div class="clip-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 8 8 4 12 8"/><line x1="8" y1="4" x2="8" y2="14"/><polyline points="20 16 16 20 12 16"/><line x1="16" y1="20" x2="16" y2="10"/></svg></div>
-              <h4>Spout</h4>
-              <p>Receive video from any other Spout-enabled Windows app: game engines, VJ tools, generative software. Live texture sharing, no encoding overhead.</p>
+              <h4>Spout / Syphon</h4>
+              <p>Receive video from other apps as live GPU textures — Spout on Windows, Syphon on macOS. Game engines, VJ tools, generative software, no encoding overhead.</p>
             </div>
             <div class="clip-card">
               <div class="clip-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="7" cy="12" r="2"/><line x1="13" y1="10" x2="19" y2="10"/><line x1="13" y1="14" x2="19" y2="14"/></svg></div>
               <h4>DeckLink</h4>
-              <p>Pro video input via Blackmagic DeckLink capture cards. Detected devices show up in the Sources browser automatically.</p>
+              <p>Pro video input via Blackmagic DeckLink capture cards on Windows. Detected devices show up in the Sources browser automatically.</p>
             </div>
             <div class="clip-card">
               <div class="clip-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
@@ -135,7 +135,12 @@
             <div class="clip-card">
               <div class="clip-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
               <h4>Screen</h4>
-              <p>Capture a desktop, monitor, or single window via Windows.Graphics.Capture. Use any application's output as a clip.</p>
+              <p>Capture a desktop, monitor, or single window through each platform's native capture path. Use any application's output as a clip.</p>
+            </div>
+            <div class="clip-card">
+              <div class="clip-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49"/><path d="M7.76 16.24a6 6 0 0 1 0-8.49"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 19.07a10 10 0 0 1 0-14.14"/></svg></div>
+              <h4>NDI</h4>
+              <p>Receive NDI video over the network from cameras, other machines, and NDI-enabled software. Sources on your network list themselves in the browser.</p>
             </div>
           </div>
         </div>
@@ -239,6 +244,43 @@
         <figure class="showcase__visual showcase__visual--image showcase__visual--contain">
           <img src="assets/showcase-fft.jpg" width="1016" height="612" alt="The Fluence FFT panel showing a frequency spectrum with a band selector, gain, smoothing, and an envelope curve mapped to a parameter." loading="lazy" />
         </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Control API & AI ------------------------------------------ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Control API</span>
+        <h2>One API for scripts and AI.</h2>
+        <p class="section-header__lede">Everything in Fluence can be driven by code — yours, or an agent's.</p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature reveal">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+          </div>
+          <h3>Local Control API</h3>
+          <p>Newline-delimited JSON over localhost TCP — scriptable from Python, Node, or anything that can open a socket. Trigger clips, edit parameters, place automation, build arrangements, read full composition state.</p>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg>
+          </div>
+          <h3>AI agents, via MCP</h3>
+          <p>Fluence ships with an MCP bridge — register it with one copied command and MCP hosts like Claude can drive the app through 55 tools, including screenshots of the live composition so an agent can see what it made.</p>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Built for live</h3>
+          <p>Off by default and localhost-only. Requests are answered on the frame boundary with a fixed per-frame budget, so external control never disturbs the show. Every structural change lands on the same undo stack as your edits.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -359,10 +401,11 @@
 
       <div class="showcase showcase--reverse reveal">
         <div class="showcase__copy">
-          <h3>Spout in. Spout out.</h3>
+          <h3>Texture sharing, both directions.</h3>
           <p>
-            Send Fluence's output to any Spout-compatible Windows app, and pull other Spout sources back in
-            as clips. Build cross-app rigs without ever encoding video.
+            Send Fluence's output to other apps and pull their output back in as clips — Spout on Windows,
+            Syphon on macOS, both without ever encoding video. NDI covers the network: receive sources from
+            cameras and other machines, and publish Fluence's output as an NDI sender.
           </p>
         </div>
         <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" class="spout-svg" role="img" aria-labelledby="spout-illo-title">
@@ -508,6 +551,30 @@
           </div>
           <h3>Plugin architecture</h3>
           <p>Extend Fluence with third-party clips and effects. Python, Node, or any executable runtime. Shared-memory frame protocol with per-plugin permissions.</p>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="4" rx="1"/><rect x="4" y="10" width="16" height="4" rx="1"/><rect x="4" y="16" width="16" height="4" rx="1"/></svg>
+          </div>
+          <h3>Decks</h3>
+          <p>Pages of clip content. Layers, groups, effects, and the crossfader are shared across decks, and switching never interrupts output — playing clips hold until you trigger something new.</p>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 7 12 12 15.5 14"/></svg>
+          </div>
+          <h3>Beat grid &amp; timecode</h3>
+          <p>Tap tempo, one-key grid resync, and BPM Snap to quantize launches. Clips run on local, global, or BPM-synced time — or lock to SMPTE, with two LTC timecode inputs decoded straight from audio.</p>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><rect x="9" y="8" width="4" height="8" rx="1" fill="currentColor"/><line x1="3" y1="19" x2="21" y2="19" opacity="0.4"/></svg>
+          </div>
+          <h3>A/B crossfader</h3>
+          <p>Assign layers to A or B buses and fade between them — the blend itself is a pickable transition shader. Punch buttons cut hard to either side, mid-performance.</p>
         </div>
       </div>
     </div>
