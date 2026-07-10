@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=28" />
+  <link rel="stylesheet" href="styles.css?v=29" />
   <meta property="og:title" content="Fluence | Real-time visuals for live performance" />
   <meta property="og:description" content="A real-time visual performance studio. Layered composition, hardware mapping, audio reactivity, projection mapping. Built for stage." />
   <meta property="og:type" content="website" />
@@ -34,6 +34,7 @@
     </button>
     <ul class="nav__links" id="primary-nav">
       <li><a class="nav__link" href="/features">Features</a></li>
+      <li><a class="nav__link" href="/shaders">Shaders</a></li>
       <li><a class="nav__link" href="/docs">Docs</a></li>
       <li><a class="nav__link" href="/changelog">Changelog</a></li>
     </ul>
@@ -68,7 +69,7 @@
       </div>
 
       <div class="hero__visual reveal">
-        <img src="assets/hero.jpg?v=2" width="1918" height="1172" alt="Fluence performing a Particle Drift composition with the layer deck, source browser, and parameters panel visible." />
+        <img src="assets/app-macos-2.0.jpg" width="2400" height="1580" alt="Fluence 2.0 on macOS: a live three-layer composite — a compute-simulated galaxy over neon hex tiles — with the shader browser and layer deck visible." />
       </div>
     </div>
   </section>
@@ -140,6 +141,28 @@
           <h3>Record &amp; export</h3>
           <p>Live record your set with bar-aware start and stop triggers. Export to H.264, ProRes, HAP, DXV3, PNG, and more. Twelve codecs in total.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shader engine teaser -------------------------------------- -->
+  <section class="section">
+    <div class="container">
+      <div class="showcase reveal">
+        <div class="showcase__copy">
+          <span class="eyebrow">The shader engine</span>
+          <h3>ISF, GLSL, Shadertoy.<br />Compute included.</h3>
+          <p>
+            Fluence runs the formats shader authors already write — with live parameters, multi-pass buffers,
+            mesh stages with PBR, and a GPU compute layer that makes half-million-particle simulations
+            just another clip. Drop a file in a folder; it hot-reloads on save.
+          </p>
+          <p><a class="btn btn--secondary" href="/shaders">Explore the shader engine</a></p>
+        </div>
+        <figure class="showcase__visual showcase__visual--image">
+          <img src="assets/shader-galaxy.jpg" width="1280" height="720"
+               alt="A spiral galaxy simulated live by a Fluence compute shader." loading="lazy" />
+        </figure>
       </div>
     </div>
   </section>
@@ -236,6 +259,7 @@
         <h4>Product</h4>
         <ul>
           <li><a href="/features">Features</a></li>
+          <li><a href="/shaders">Shaders</a></li>
           <li><a href="/download">Download</a></li>
           <li><a href="/changelog">Changelog</a></li>
         </ul>

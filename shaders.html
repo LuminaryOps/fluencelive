@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shaders | Fluence</title>
+  <meta name="description" content="The Fluence shader engine: ISF, GLSL, and Shadertoy formats, live parameters, a GPU compute layer for real simulation, mesh shaders with PBR, and hot reload." />
+  <link rel="icon" type="image/png" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=29" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="/" class="brand" aria-label="Fluence home">
+      <img src="assets/logo.png" alt="" />
+      <span>Fluence</span>
+    </a>
+    <button class="nav__hamburger" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+    <ul class="nav__links" id="primary-nav">
+      <li><a class="nav__link" href="/features">Features</a></li>
+      <li><a class="nav__link" href="/shaders" aria-current="page">Shaders</a></li>
+      <li><a class="nav__link" href="/docs">Docs</a></li>
+      <li><a class="nav__link" href="/changelog">Changelog</a></li>
+    </ul>
+    <a class="btn btn--primary nav__cta" href="/download">
+      Download
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-header">
+    <div class="container">
+      <span class="eyebrow">Shaders</span>
+      <h1>A shader engine, not a shader player.</h1>
+      <p>Three authoring formats, parameters that become instruments, a GPU compute layer for real simulation,
+         and hot reload on save. Every image on this page is Fluence's own output.</p>
+    </div>
+  </section>
+
+  <!-- Full-bleed hero -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <figure class="shader-hero reveal">
+        <img src="assets/shader-apollonian.jpg" width="1280" height="720"
+             alt="Apollonian, a kaleidoscopic fractal shader bundled with Fluence, rendered live." loading="eager" />
+        <figcaption>Apollonian &mdash; one of 215 bundled shaders, captured live from the compositor.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Formats -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Formats</span>
+        <h2>Write it your way. Drop it in a folder.</h2>
+        <p class="section-header__lede">Fluence speaks the formats shader authors already use. No conversion, no SDK, no build step.</p>
+      </div>
+
+      <div class="clip-grid" style="text-align:left;">
+        <div class="clip-card reveal">
+          <div class="clip-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4 L20 4 L20 20 L4 20 Z"/><path d="M4 12 Q8 6 12 12 T20 12"/></svg></div>
+          <h4>ISF</h4>
+          <p>The interchange standard for VJ shaders. Generators, effects, and transitions with declared inputs, persistent buffers, and multi-pass rendering. Your existing ISF library works as-is.</p>
+        </div>
+        <div class="clip-card reveal">
+          <div class="clip-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          <h4>GLSL <code>.fs</code></h4>
+          <p>Plain fragment shaders with a JSON metadata block. Add <code>-- VERTEX --</code> and <code>-- GEOMETRY --</code> stages for procedural 3D, or <code>-- COMPUTE --</code> passes for simulation.</p>
+        </div>
+        <div class="clip-card reveal">
+          <div class="clip-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="9" x2="9" y2="21"/></svg></div>
+          <h4>Shadertoy <code>.json</code></h4>
+          <p>Full multi-pass Shadertoy support: buffer passes, cubemap passes, and the Image pass, with channel routing intact. Port a Shadertoy without rewriting it.</p>
+        </div>
+      </div>
+
+      <div class="prose reveal" style="text-align:center; margin-top: var(--space-6);">
+        <p>Drop files into <code>Documents/Fluence/Shaders</code> and they appear in the browser, organized by the
+        category each shader declares. Edit one while it's playing and it <strong>hot-reloads on save</strong>.
+        A custom shader with a built-in's name overrides it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parameters -->
+  <section class="section">
+    <div class="container">
+      <div class="showcase reveal">
+        <div class="showcase__copy">
+          <span class="eyebrow">Parameters</span>
+          <h3>Declared inputs become instruments.</h3>
+          <p>
+            Every input a shader declares renders as a control: sliders, colors, toggles, menus, points &mdash;
+            grouped the way the author grouped them. And every one of those controls is a target: bind it to a
+            MIDI knob, drive it from a frequency band, automate it on the timeline, or hand it to a script or
+            AI agent over the control API.
+          </p>
+          <p>
+            Declare an <code>audioFFT</code> input and the shader receives the live spectrum directly &mdash;
+            audio-reactivity inside the shader itself, on top of the FFT drives outside it.
+          </p>
+        </div>
+        <figure class="showcase__visual">
+          <pre class="code-panel"><code>/*{
+  "DESCRIPTION": "Fisheye bulge or pinch
+     inside a circular region.",
+  "CATEGORIES": ["Distortion"],
+  "INPUTS": [
+    { "NAME": "inputImage", "TYPE": "image" },
+    { "NAME": "amount",
+      "LABEL": "Amount",
+      "TYPE":  "float",
+      "MIN":   -1.0,
+      "MAX":    1.0,
+      "DEFAULT": 0.35 }
+  ]
+}*/</code></pre>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compute -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Compute</span>
+        <h2>Real simulation, inside a shader file.</h2>
+        <p class="section-header__lede">Declare storage buffers, write compute passes over them, and read the results
+        in your render stages &mdash; all in one file. Particles, fluids, flocking, and physics are shaders in Fluence,
+        not engine features.</p>
+      </div>
+
+      <div class="showcase reveal">
+        <div class="showcase__copy">
+          <h3>Half a million stars, one file.</h3>
+          <p>
+            This is the bundled <em>Galaxy</em> shader: a 500,000-particle pool in author-declared storage buffers,
+            stepped by four compute passes, drawn with GPU-written indirect instancing. Emission, orbital dynamics,
+            spiral-arm forces, and audio response &mdash; every knob exposed as a parameter.
+          </p>
+          <p>
+            Buffers can be persistent across frames or double-buffered for ping-pong simulation. Passes run with
+            configurable substeps. Twenty-two of the bundled shaders are built on this surface.
+          </p>
+        </div>
+        <figure class="showcase__visual showcase__visual--image">
+          <img src="assets/shader-galaxy.jpg" width="1280" height="720"
+               alt="A spiral galaxy simulated by a Fluence compute shader: half a million particles in orbital motion." loading="lazy" />
+        </figure>
+      </div>
+
+      <div class="showcase showcase--reverse reveal" style="margin-top: var(--space-7);">
+        <div class="showcase__copy">
+          <h3>The authoring surface.</h3>
+          <p>
+            Storage buffers are declared in metadata with a stride and count. Compute passes are named blocks in
+            the same file, dispatched in order &mdash; per-buffer thread counts or a single workgroup for
+            frame-level logic. Indirect draw arguments can be written by the GPU itself.
+          </p>
+        </div>
+        <figure class="showcase__visual">
+          <pre class="code-panel"><code>"BUFFERS": [
+  { "NAME": "Pool", "STRIDE": 48,
+    "COUNT": 500000, "PERSISTENT": true },
+  { "NAME": "DrawArgs", "KIND": "drawIndirect" }
+],
+"COMPUTE": [
+  { "PASS": "init",  "THREADS": "Pool" },
+  { "PASS": "emit",  "THREADS": "Pool" },
+  { "PASS": "sim",   "THREADS": "Pool" }
+]
+
+-- COMPUTE sim --
+void main() {
+  Particle p = Pool[gl_GlobalInvocationID.x];
+  /* orbital dynamics, arm forces, turbulence */
+}</code></pre>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Multi-pass -->
+  <section class="section">
+    <div class="container">
+      <div class="showcase reveal">
+        <div class="showcase__copy">
+          <span class="eyebrow">Multi-pass</span>
+          <h3>Buffers, feedback, cubemaps.</h3>
+          <p>
+            Multi-pass shaders render intermediate buffers that later passes read &mdash; the structure behind
+            feedback trails, reaction-diffusion, and screen-space effects. Shadertoy's buffer and cubemap passes
+            are supported with their channel routing intact, and ISF persistent buffers carry state between frames.
+          </p>
+        </div>
+        <figure class="showcase__visual showcase__visual--image">
+          <img src="assets/shader-2d_kifs.jpg" width="1280" height="720"
+               alt="2D KIFS, a kaleidoscopic iterated-function-system shader, rendered live in Fluence." loading="lazy" />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mesh & 3D -->
+  <section class="section">
+    <div class="container">
+      <div class="showcase showcase--reverse reveal">
+        <div class="showcase__copy">
+          <span class="eyebrow">Mesh shaders &amp; 3D</span>
+          <h3>Geometry is a stage, not a limit.</h3>
+          <p>
+            Add <code>-- VERTEX --</code> and <code>-- GEOMETRY --</code> stages to a shader and it draws real
+            geometry: procedural meshes, instanced fields, GPU-simulated particles drawn as quads. Or load OBJ
+            and GLTF models with full PBR materials and dynamic lighting &mdash; either way, it's just another
+            clip on the deck.
+          </p>
+        </div>
+        <figure class="showcase__visual showcase__visual--image">
+          <img src="assets/showcase-3d.jpg?v=2" width="1600" height="900"
+               alt="A 3D model rendered live in Fluence with PBR shading." loading="lazy" />
+        </figure>
+      </div>
+
+      <div class="showcase reveal" style="margin-top: var(--space-7);">
+        <div class="showcase__copy">
+          <span class="eyebrow">Generated GLSL</span>
+          <h3>Shape Shifter writes shaders for you.</h3>
+          <p>
+            The Shape Shifter 3D editor is live SDF modeling: primitives, boolean operations, modifiers,
+            deformations. As you build, Fluence generates raymarching GLSL containing <em>only</em> the shapes
+            and operations your scene uses &mdash; hand-written-shader performance without writing a line.
+          </p>
+        </div>
+        <figure class="showcase__visual showcase__visual--image">
+          <img src="assets/shader-mandelbox_corridor.jpg" width="1280" height="720"
+               alt="Mandelbox Corridor, a raymarched fractal interior rendered live in Fluence." loading="lazy" />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Transitions & effects as shaders -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">The same engine, everywhere</span>
+        <h2>Transitions, effects, and grades are shaders too.</h2>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature reveal">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="9" height="12" rx="1"/><rect x="13" y="6" width="9" height="12" rx="1" opacity="0.5"/><path d="M11 12h2"/></svg>
+          </div>
+          <h3>Custom transitions</h3>
+          <p>Forty-eight bundled transitions, every one a shader with tunable parameters. Drop your own into <code>Documents/Fluence/Transitions</code> &mdash; the standard ISF transition contract works unchanged, and it hot-reloads on save.</p>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3 a9 9 0 0 1 0 18"/></svg>
+          </div>
+          <h3>Effect shaders</h3>
+          <p>Effects are the same pipeline pointed at an input image, stackable at clip, layer, group, and composition scope. A generator effect dropped on an empty slot consumes the layers below it as input.</p>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9 h18"/><path d="M3 15 h18"/><path d="M9 3 v18"/><path d="M15 3 v18"/></svg>
+          </div>
+          <h3>3D LUTs</h3>
+          <p>Curated Cinematic and Creative <code>.cube</code> collections with live preview tiles. Drag a look onto any clip, layer, group, or chain; blend it with an intensity slider. Your own LUTs load from <code>Documents/Fluence/LUTs</code>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Under the hood -->
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="section-header reveal">
+        <span class="eyebrow">Under the hood</span>
+        <h2>Compiled like an engine.</h2>
+      </div>
+      <div class="prose reveal" style="text-align: center;">
+        <p>
+          Every shader is compiled through glslang to SPIR-V and runs on Fluence's wgpu renderer &mdash;
+          <strong>Metal on macOS, Vulkan on Windows</strong> &mdash; with the parameters you move re-uniformed
+          per frame, not recompiled. That's what makes 215 bundled shaders, your folder of customs, and a
+          half-million-particle simulation feel like clips instead of projects.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="cta-band reveal">
+      <h2>Bring your shader folder.</h2>
+      <p>Fluence is the fastest way to get a shader from your editor to a stage.</p>
+      <div class="cta-band__actions">
+        <a class="btn btn--primary btn--lg" href="/download">Get Fluence</a>
+        <a class="btn btn--secondary btn--lg" href="/features">All features</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer__brand">
+        <a href="/" class="brand" aria-label="Fluence home">
+          <img src="assets/logo.png" alt="" />
+          <span>Fluence</span>
+        </a>
+        <p>Real-time visuals built for stage.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="/features">Features</a></li>
+          <li><a href="/shaders">Shaders</a></li>
+          <li><a href="/download">Download</a></li>
+          <li><a href="/changelog">Changelog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="/docs">Documentation</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:admin@fluencelive.com">admin@fluencelive.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span id="year">2026</span> Fluence™. All rights reserved.</span>
+      <span>Built for live performance.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts.js?v=28" defer></script>
+</body>
+</html>
