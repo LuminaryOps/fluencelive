@@ -66,14 +66,22 @@
             until you activate it with a license key.
           </p>
 
-          <!-- Free download. Points at the GitHub Releases "latest" URL so it
-               stays stable across versions. Replace the asset filename if the
-               installer name changes. -->
-          <a class="btn btn--primary btn--lg"
-             href="https://github.com/LuminaryOps/fluence-releases/releases/latest/download/Fluence-1.0.2-Setup.exe"
+          <!-- Per-platform downloads, resolved at page load from the GitHub
+               Releases API (see script at the bottom of this page). Buttons for
+               platforms whose asset is missing from the latest release stay
+               hidden, so publishing a release with both assets is all it takes
+               to update this page. Fallback hrefs point at the releases page. -->
+          <a class="btn btn--primary btn--lg" id="dl-win" data-platform="windows"
+             href="https://github.com/LuminaryOps/fluence-releases/releases/latest"
              style="width:100%; margin-top: var(--space-5);">
-            Download Fluence
+            Download for Windows
           </a>
+          <a class="btn btn--primary btn--lg" id="dl-mac" data-platform="mac" hidden
+             href="https://github.com/LuminaryOps/fluence-releases/releases/latest"
+             style="width:100%; margin-top: var(--space-3);">
+            Download for macOS (Apple Silicon)
+          </a>
+          <p class="text-muted" id="dl-version" style="margin-top: var(--space-3); font-size: 0.85em;"></p>
 
           <!-- Buy license. The lemonsqueezy-button class hands the click to
                Lemon.js, which opens the checkout in an overlay on this page
@@ -97,10 +105,10 @@
     <div class="container container--narrow">
       <div class="section-header reveal">
         <span class="eyebrow">Platform</span>
-        <h2>Windows for now.</h2>
+        <h2>Windows and macOS.</h2>
       </div>
       <div class="prose reveal" style="text-align: center;">
-        <p>Fluence runs on Windows 10 and 11. Mac support coming soon.</p>
+        <p>Fluence runs on Windows 10 and 11 and, starting with v2.0, on macOS (Apple Silicon, signed and notarized).</p>
       </div>
     </div>
   </section>
@@ -146,5 +154,37 @@
 </footer>
 
 <script src="scripts.js?v=28" defer></script>
+
+<script>
+  // Resolve per-platform download links from the latest GitHub release.
+  // Assets are matched by shape, not filename, so versioned names keep working.
+  (function () {
+    var win = document.getElementById("dl-win");
+    var mac = document.getElementById("dl-mac");
+    var ver = document.getElementById("dl-version");
+    fetch("https://api.github.com/repos/LuminaryOps/fluence-releases/releases/latest")
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (rel) {
+        if (!rel || !rel.assets) return; // fallback hrefs stay
+        var exe = rel.assets.find(function (a) {
+          var n = a.name.toLowerCase();
+          return n.endsWith(".exe") && n.indexOf("setup") !== -1;
+        });
+        var dmg = rel.assets.find(function (a) {
+          return a.name.toLowerCase().endsWith(".dmg");
+        });
+        if (exe) win.href = exe.browser_download_url;
+        if (dmg) { mac.href = dmg.browser_download_url; mac.hidden = false; }
+        if (ver) ver.textContent = "Latest version: " + rel.tag_name.replace(/^v/, "");
+        // Put the visitor's own platform first.
+        if (dmg && navigator.platform && /mac/i.test(navigator.platform)) {
+          win.parentNode.insertBefore(mac, win);
+          mac.style.marginTop = "var(--space-5)";
+          win.style.marginTop = "var(--space-3)";
+        }
+      })
+      .catch(function () { /* fallback hrefs stay */ });
+  })();
+</script>
 </body>
 </html>
