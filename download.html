@@ -59,10 +59,10 @@
 
       <div class="reveal" style="max-width: 520px; margin: 0 auto; text-align: center;">
         <div class="price-card price-card--highlight">
-          <span class="eyebrow text-accent">Version 2.0</span>
-          <h3 style="margin-top: var(--space-3);">Fluence 2.0</h3>
+          <span class="eyebrow text-accent" id="dl-version-eyebrow">Version 2.1</span>
+          <h3 style="margin-top: var(--space-3);" id="dl-version-title">Fluence 2.1</h3>
           <p class="text-muted" style="margin-top: var(--space-3);">
-            Download Fluence 2.0 for Windows or macOS and use the full feature set. A small watermark
+            Download Fluence for Windows or macOS and use the full feature set. A small watermark
             renders periodically until you activate it with a license key.
           </p>
 
@@ -176,6 +176,13 @@
         if (exe) win.href = exe.browser_download_url;
         if (dmg) { mac.href = dmg.browser_download_url; mac.hidden = false; }
         if (ver) ver.textContent = "Latest version: " + rel.tag_name.replace(/^v/, "");
+        // Keep the card's version text in step with the release so the
+        // static copy can't go stale between site updates.
+        var short = rel.tag_name.replace(/^v/, "").split(".").slice(0, 2).join(".");
+        var eyebrow = document.getElementById("dl-version-eyebrow");
+        var title = document.getElementById("dl-version-title");
+        if (short && eyebrow) eyebrow.textContent = "Version " + short;
+        if (short && title) title.textContent = "Fluence " + short;
         // Put the visitor's own platform first.
         if (dmg && navigator.platform && /mac/i.test(navigator.platform)) {
           win.parentNode.insertBefore(mac, win);
