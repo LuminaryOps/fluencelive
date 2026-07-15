@@ -55,7 +55,7 @@
       <figure class="shader-hero reveal">
         <img src="assets/shader-apollonian.jpg" width="1280" height="720"
              alt="Apollonian, a kaleidoscopic fractal shader bundled with Fluence, rendered live." loading="eager" />
-        <figcaption>Apollonian &mdash; one of 215 bundled shaders, captured live from the compositor.</figcaption>
+        <figcaption>Apollonian, one of 215 bundled shaders, captured live from the compositor.</figcaption>
       </figure>
     </div>
   </section>
@@ -89,7 +89,7 @@
 
       <div class="prose reveal" style="text-align:center; margin-top: var(--space-6);">
         <p>Drop files into <code>Documents/Fluence/Shaders</code> and they appear in the browser, organized by the
-        category each shader declares. There is no build step &mdash; shaders load at runtime, and edits are picked
+        category each shader declares. There is no build step: shaders load at runtime, and edits are picked
         up the next time the shader loads. A custom shader with a built-in's name overrides it.</p>
       </div>
     </div>
@@ -103,13 +103,13 @@
           <span class="eyebrow">Parameters</span>
           <h3>Declared inputs become instruments.</h3>
           <p>
-            Every input a shader declares renders as a control: sliders, colors, toggles, menus, points &mdash;
+            Every input a shader declares renders as a control: sliders, colors, toggles, menus, and points,
             grouped the way the author grouped them. And every one of those controls is a target: bind it to a
             MIDI knob, drive it from a frequency band, automate it on the timeline, or hand it to a script or
             AI agent over the control API.
           </p>
           <p>
-            Declare an <code>audioFFT</code> input and the shader receives the live spectrum directly &mdash;
+            Declare an <code>audioFFT</code> input and the shader receives the live spectrum directly:
             audio-reactivity inside the shader itself, on top of the FFT drives outside it.
           </p>
         </div>
@@ -140,7 +140,7 @@
         <span class="eyebrow">Compute</span>
         <h2>Real simulation, inside a shader file.</h2>
         <p class="section-header__lede">Declare storage buffers, write compute passes over them, and read the results
-        in your render stages &mdash; all in one file. Particles, fluids, flocking, and physics are shaders in Fluence,
+        in your render stages, all in one file. Particles, fluids, flocking, and physics are shaders in Fluence,
         not engine features.</p>
       </div>
 
@@ -150,7 +150,7 @@
           <p>
             This is the bundled <em>Galaxy</em> shader: a 500,000-particle pool in author-declared storage buffers,
             stepped by four compute passes, drawn with GPU-written indirect instancing. Emission, orbital dynamics,
-            spiral-arm forces, and audio response &mdash; every knob exposed as a parameter.
+            spiral-arm forces, and audio response, with every knob exposed as a parameter.
           </p>
           <p>
             Buffers can be persistent across frames or double-buffered for ping-pong simulation. Passes run with
@@ -168,7 +168,7 @@
           <h3>The authoring surface.</h3>
           <p>
             Storage buffers are declared in metadata with a stride and count. Compute passes are named blocks in
-            the same file, dispatched in order &mdash; per-buffer thread counts or a single workgroup for
+            the same file, dispatched in order, with per-buffer thread counts or a single workgroup for
             frame-level logic. Indirect draw arguments can be written by the GPU itself.
           </p>
         </div>
@@ -202,7 +202,7 @@ void main() {
           <span class="eyebrow">Multi-pass</span>
           <h3>Buffers, feedback, cubemaps.</h3>
           <p>
-            Multi-pass shaders render intermediate buffers that later passes read &mdash; the structure behind
+            Multi-pass shaders render intermediate buffers that later passes read: the structure behind
             feedback trails, reaction-diffusion, and screen-space effects. Shadertoy's buffer and cubemap passes
             are supported with their channel routing intact, and ISF persistent buffers carry state between frames.
           </p>
@@ -225,7 +225,7 @@ void main() {
           <p>
             Add <code>-- VERTEX --</code> and <code>-- GEOMETRY --</code> stages to a shader and it draws real
             geometry: procedural meshes, instanced fields, GPU-simulated particles drawn as quads. Or load OBJ
-            and GLTF models with full PBR materials and dynamic lighting &mdash; either way, it's just another
+            and GLTF models with full PBR materials and dynamic lighting. Either way, it's just another
             clip on the deck.
           </p>
         </div>
@@ -242,7 +242,7 @@ void main() {
           <p>
             The Shape Shifter 3D editor is live SDF modeling: primitives, boolean operations, modifiers,
             deformations. As you build, Fluence generates raymarching GLSL containing <em>only</em> the shapes
-            and operations your scene uses &mdash; hand-written-shader performance without writing a line.
+            and operations your scene uses: hand-written-shader performance without writing a line.
           </p>
         </div>
         <figure class="showcase__visual showcase__visual--image">
@@ -267,7 +267,7 @@ void main() {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="9" height="12" rx="1"/><rect x="13" y="6" width="9" height="12" rx="1" opacity="0.5"/><path d="M11 12h2"/></svg>
           </div>
           <h3>Custom transitions</h3>
-          <p>Forty-eight bundled transitions, every one a shader with tunable parameters. Drop your own into <code>Documents/Fluence/Transitions</code> &mdash; the standard ISF transition contract works unchanged.</p>
+          <p>Forty-eight bundled transitions, every one a shader with tunable parameters. Drop your own into <code>Documents/Fluence/Transitions</code> and the standard ISF transition contract works unchanged.</p>
         </div>
 
         <div class="feature reveal">
@@ -298,14 +298,14 @@ void main() {
       </div>
       <div class="prose reveal" style="text-align: center;">
         <p>
-          Shaders compile once and stay resident on the GPU &mdash; the parameters you move update per frame,
+          Shaders compile once and stay resident on the GPU. The parameters you move update per frame;
           nothing recompiles. That's what makes 215 bundled shaders, your folder of customs, and a
           half-million-particle simulation feel like clips instead of projects.
         </p>
         <p>
-          And it's all documented: Fluence ships with a complete authoring reference &mdash; every metadata
+          And it's all documented: Fluence ships with a complete authoring reference (every metadata
           field, input type, built-in uniform, the multi-pass and compute contracts, mesh stages, and the
-          transition format &mdash; installed with the app, alongside the <a href="/docs#authoring"
+          transition format) installed with the app, alongside the <a href="/docs#authoring"
           style="color: var(--accent);">docs overview</a>.
         </p>
       </div>
