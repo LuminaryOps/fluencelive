@@ -51,7 +51,7 @@
     <div class="container">
       <span class="hero__pill">
         <span class="dot"></span>
-        Fluence 2.1 for Windows &amp; macOS
+        <span><span id="hero-version">Fluence 2.5.2</span> for Windows &amp; macOS</span>
       </span>
       <h1>
         Real-time visuals,<br />
@@ -283,5 +283,22 @@
 </footer>
 
 <script src="scripts.js?v=28" defer></script>
+<!-- The hero pill's version follows the latest GitHub release, same as the
+     download card, so it can't go stale between site updates. The static
+     text is the fallback if the API call fails. -->
+<script>
+  (function () {
+    var el = document.getElementById("hero-version");
+    if (!el) return;
+    fetch("https://api.github.com/repos/LuminaryOps/fluence-releases/releases/latest")
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (rel) {
+        if (!rel || !rel.tag_name) return; // fallback text stays
+        var version = rel.tag_name.replace(/^v/, "");
+        if (version) el.textContent = "Fluence " + version;
+      })
+      .catch(function () { /* fallback text stays */ });
+  })();
+</script>
 </body>
 </html>
