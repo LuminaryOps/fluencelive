@@ -1280,10 +1280,114 @@ p + p { margin-top: var(--space-4); }
   font-size: var(--fs-xs);
   color: var(--text-faint);
 }
-
 @media (max-width: 720px) {
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer__bottom { flex-direction: column; gap: var(--space-3); text-align: center; }
+}
+
+/* ── Policy and support pages ─────────────────────────────────── */
+
+.page-header .page-meta {
+  margin-top: var(--space-5);
+  font-size: var(--fs-sm);
+  color: var(--text-faint);
+}
+.prose a { color: var(--accent); }
+.prose a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.prose strong { color: var(--text); font-weight: 600; }
+
+/* Long-form reading: calmer headings, even rhythm between blocks. */
+.prose--policy h2 {
+  font-size: var(--fs-2xl);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border);
+}
+.prose--policy h3 { font-size: var(--fs-lg); }
+.prose--policy p,
+.prose--policy ul,
+.prose--policy ol { line-height: 1.7; }
+.prose--policy p + ul,
+.prose--policy p + ol,
+.prose--policy ul + p,
+.prose--policy ol + p { margin-top: var(--space-4); }
+
+/* A short summary above the full text. */
+.glance {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-7);
+}
+.glance__item {
+  padding: var(--space-5);
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.glance__item h3 {
+  margin: 0 0 var(--space-2);
+  font-size: var(--fs-base);
+  color: var(--text);
+}
+.glance__item p {
+  margin: 0;
+  font-size: var(--fs-sm);
+}
+.glance__item .glance__icon {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-3);
+  border-radius: var(--radius);
+  background: rgba(245, 166, 35, 0.1);
+  color: var(--accent);
+}
+
+/* An in-app menu path, e.g. Output > Advanced Output. */
+.ui-path {
+  display: inline-block;
+  padding: 0.1em 0.5em;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--bg-elev);
+  color: var(--text);
+  font-size: 0.92em;
+  white-space: nowrap;
+}
+
+/* Numbered steps with accent counters. */
+.prose ol.steps {
+  list-style: none;
+  padding-left: 0;
+  counter-reset: step;
+}
+.prose ol.steps li {
+  position: relative;
+  padding-left: 2.75rem;
+  counter-increment: step;
+}
+.prose ol.steps li + li { margin-top: var(--space-4); }
+.prose ol.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: -0.1em;
+  width: 1.85rem;
+  height: 1.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(245, 166, 35, 0.4);
+  color: var(--accent);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .glance { grid-template-columns: 1fr; }
 }
 
 /* ── Reveal-on-scroll ─────────────────────────────────────────── */
