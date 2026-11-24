@@ -448,24 +448,6 @@ p + p { margin-top: var(--space-4); }
   .hero { padding: var(--space-8) 0 var(--space-7); }
 }
 
-.hero__pill {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-3);
-  padding: 0.4rem 0.85rem;
-  margin-bottom: var(--space-5);
-  border: 1px solid var(--border-strong);
-  border-radius: 999px;
-  background: var(--bg-elev);
-  font-size: var(--fs-sm);
-  color: var(--text-muted);
-}
-.hero__pill .dot {
-  width: 6px; height: 6px; border-radius: 999px;
-  background: var(--accent);
-  box-shadow: 0 0 12px var(--accent);
-}
-
 .hero h1 {
   max-width: 18ch;
   margin: 0 auto;
