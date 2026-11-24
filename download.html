@@ -36,6 +36,7 @@
       <li><a class="nav__link" href="/features">Features</a></li>
       <li><a class="nav__link" href="/shaders">Shaders</a></li>
       <li><a class="nav__link" href="/docs">Docs</a></li>
+      <li><a class="nav__link" href="https://account.fluencelive.com">Account</a></li>
     </ul>
     <a class="btn btn--primary nav__cta" href="#download">
       Download
@@ -84,7 +85,9 @@
 
           <!-- Buy license. The lemonsqueezy-button class hands the click to
                Lemon.js, which opens the checkout in an overlay on this page
-               (no redirect). `?embed=1` is required for overlay rendering. -->
+               (no redirect). `?embed=1` is required for overlay rendering.
+               When Stripe is live this becomes https://account.fluencelive.com/buy
+               (license-server/ in the Fluence repo) and Lemon.js goes. -->
           <a class="btn btn--secondary btn--lg lemonsqueezy-button"
              href="https://fluencelive.lemonsqueezy.com/checkout/buy/1859bd40-5e89-474b-9c8e-9ba568fa2a0d?embed=1"
              style="width:100%; margin-top: var(--space-3);">
@@ -93,6 +96,8 @@
 
           <p class="text-muted" style="margin-top: var(--space-4); font-size: 0.9em;">
             Already have a key? Enter it in Preferences → License inside the app.
+            See your licenses and the computers they're activated on in
+            <a href="https://account.fluencelive.com" style="color: var(--accent)">your account</a>.
           </p>
         </div>
       </div>
@@ -132,6 +137,7 @@
           <li><a href="/features">Features</a></li>
           <li><a href="/shaders">Shaders</a></li>
           <li><a href="/download">Download</a></li>
+          <li><a href="https://account.fluencelive.com">Your account</a></li>
         </ul>
       </div>
       <div>

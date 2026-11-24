@@ -30,6 +30,7 @@
       <li><a class="nav__link" href="/features">Features</a></li>
       <li><a class="nav__link" href="/shaders">Shaders</a></li>
       <li><a class="nav__link" href="/docs">Docs</a></li>
+      <li><a class="nav__link" href="https://account.fluencelive.com">Account</a></li>
     </ul>
     <a class="btn btn--primary nav__cta" href="/download">
       Download
@@ -100,11 +101,14 @@
         <h3>License activation and checks</h3>
         <p>
           When you activate a license, Fluence sends your license key and your computer's name to our
-          license provider, Lemon Squeezy. The computer name is there so you can recognize each
-          activation in your account. After that, Fluence re-checks the license at most once a day,
-          sending the license key and the activation's ID. Lemon Squeezy is also the merchant of record
-          for purchases (see <a href="#website">This website</a>) and handles this information under its
-          own <a href="https://www.lemonsqueezy.com/privacy" rel="noopener">privacy policy</a>.
+          license server, license.fluencelive.com, which runs on Cloudflare. The computer name is there so
+          you can recognize each activation in your account. After that, Fluence re-checks the license at
+          most once a day, sending the license key and the activation's ID. Fluence versions before 3.0.2
+          send the same information to Lemon Squeezy, our license provider until now, instead. Licenses and
+          activations held by Lemon Squeezy are copied to our license server, and until Lemon Squeezy closes on
+          March 31, 2027, our server asks Lemon Squeezy about a key or activation it hasn't seen before,
+          sending it the key and the activation's ID. Lemon Squeezy handles this information under its own
+          <a href="https://www.lemonsqueezy.com/privacy" rel="noopener">privacy policy</a>.
         </p>
 
         <h3>Update checks</h3>
@@ -183,6 +187,15 @@
           and use them only to provide your license and support. We never see your full payment card details.
         </p>
 
+        <h3>Your account</h3>
+        <p>
+          account.fluencelive.com shows your licenses and the computers they're activated on. There's no
+          password: you sign in with a one-time link we email you. We keep your email address so we can find
+          your licenses, and the sign-in emails are sent through Cloudflare. Signing in sets one cookie that
+          keeps you signed in for up to 30 days, and nothing else. Your account shows the licenses bought with
+          the email address you sign in with.
+        </p>
+
         <h2 id="email">If you email us</h2>
         <p>
           When you write to <a href="mailto:admin@fluencelive.com">admin@fluencelive.com</a>, we keep the
@@ -230,6 +243,7 @@
           <li><a href="/features">Features</a></li>
           <li><a href="/shaders">Shaders</a></li>
           <li><a href="/download">Download</a></li>
+          <li><a href="https://account.fluencelive.com">Your account</a></li>
         </ul>
       </div>
       <div>
